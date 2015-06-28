@@ -1,5 +1,10 @@
 ---
 
+- name: Install Language Pack
+  apt: name={{ item }} update_cache={{ update_apt_cache }} force=yes state=latest
+  with_items:
+    - language-pack-de
+
 - name: Install PostgreSQL
   apt: name={{ item }} update_cache={{ update_apt_cache }} state=installed
   with_items:

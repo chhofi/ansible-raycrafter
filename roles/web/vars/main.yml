@@ -35,4 +35,5 @@ django_environment:
   EMAIL_PORT: 1025
   EMAIL_HOST_USER: "{{ email_host_user|default(omit) }}"
   EMAIL_HOST_PASSWORD: "{{ email_host_password|default(omit) }}"
+  DJANGO_DEFAULT_FROM_EMAIL: "djangotest <noreply@141.62.11.237>"
   BROKER_URL: "{{ broker_url|default(omit) }}"

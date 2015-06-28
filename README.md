@@ -39,16 +39,17 @@ myproject
 │   ├── apps
 │   │   └── __init__.py
 │   ├── __init__.py
-│   ├── settings
-│   │   ├── base.py
-│   │   ├── __init__.py
-│   │   ├── local.py
-│   │   └── production.py
 │   ├── templates
 │   │   ├── 403.html
 │   │   ├── 404.html
 │   │   ├── 500.html
 │   │   └── base.html
+├── config
+│   ├── settings
+│   │   ├── base.py
+│   │   ├── __init__.py
+│   │   ├── local.py
+│   │   └── production.py
 │   ├── urls.py
 │   └── wsgi.py
 ├── README.md

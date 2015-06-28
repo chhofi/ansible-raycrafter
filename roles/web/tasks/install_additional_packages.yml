@@ -1,5 +1,6 @@
 ---
 
 - name: Install additional packages
-  command: sudo install_os_dependencies.sh
+  command: ./install_os_dependencies.sh install
            chdir={{ project_path }}
+  become: yes

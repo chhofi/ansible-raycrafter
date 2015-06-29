@@ -39,6 +39,6 @@
 
 - name: Create superuser
   shell: ./manage.py shell < cat ./django_createsuperuser.py
-    args:
-      chdir: {{ project_path }}
+  args:
+    chdir: {{ project_path }}
   environ: django_environ

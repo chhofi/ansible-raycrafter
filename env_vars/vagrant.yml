@@ -10,6 +10,10 @@ db_user: "{{ application_name }}"
 db_name: "{{ application_name }}db"
 db_password: password
 
+# Superuser settings
+superuser_name: david
+superuser_email: zuber.david@gmx.de
+superuser_password: password
 
 # Gunicorn settings. For the number of workers, a good rule to follow is
 # 2 x number of CPUs + 1

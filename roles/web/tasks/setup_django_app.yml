@@ -38,7 +38,7 @@
             dest="{{ project_path }}"
 
 - name: Create superuser
-  shell: "./manage.py shell < cat {{ project_path }}/django_createsuperuser.py"
+  shell: cat ./django_createsuperuser.py | ./manage.py shell
   args:
     chdir: "{{ project_path }}"
   environment: django_environment

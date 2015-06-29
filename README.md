@@ -63,7 +63,9 @@ The main things to note are the locations of the `manage.py`, `wsgi.py` and `cel
 
 Also, if your app needs additional system packages installed, you can add them in `roles/web/tasks/install_additional_packages.yml`.
 
-I set some default values in the `env_vars` based on my open-source app, [Djangotest](https://github.com/RayCrafter/djangotest), so all you really have to do is type in this one command in the project root:
+If you setup your django project with the [cookiecutter template](https://github.com/RayCrafter/cookiecutter-django), just replace the repository link in `env_vars/base.yml` to your repository.
+
+I set some default values in the `env_vars` based on a test project, [Djangotest](https://github.com/RayCrafter/djangotest), so all you really have to do is type in this one command in the project root:
 
 ```
 vagrant up

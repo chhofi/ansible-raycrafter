@@ -38,7 +38,7 @@
             dest="{{ project_path }}"
 
 - name: Create superuser
-  shell: cat ./django_createsuperuser.py | ./manage.py shell
+  shell: ". {{ virtualenv_path }}/bin/activate && python ./django_createsuperuser.py"
   args:
     chdir: "{{ project_path }}"
   environment: django_environment

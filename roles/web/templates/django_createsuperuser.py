@@ -1,7 +1,7 @@
 from django.contrib import auth
 from django.db import utils
 
-usermodel = auth.get_uesr_model()
+usermodel = auth.get_user_model()
 try:
     usermodel.objects.create_superuser(
         '{{ superuser_name }}',

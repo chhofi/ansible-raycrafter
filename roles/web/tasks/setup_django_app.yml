@@ -32,3 +32,13 @@
   environment: django_environment
   when: run_django_collectstatic is defined and run_django_collectstatic
   tags: django.collectstatic
+
+- name: Copy createsuperuser script
+  template: src=django_createsuperuser.py
+            dest={{ project_path }}
+
+- name: Create superuser
+  shell: ./manage.py shell < cat ./django_createsuperuser.py
+    args:
+      chdir: {{ project_path }}
+  environ: django_environ

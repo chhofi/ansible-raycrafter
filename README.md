@@ -14,9 +14,7 @@ Ansible Playbook designed for environments running a Django app.  It can install
 
 Default settings are stored in ```roles/role_name/vars/main.yml```.  Environment-specific settings are in the ```env_vars``` directory.
 
-**Tested with OS:** Ubuntu 12.04 LTS x64, Ubuntu 14.04 LTS x64
-
-**Tested with Cloud Providers:** [Digital Ocean](https://www.digitalocean.com/?refcode=5aa134a379d7), [Amazon](https://aws.amazon.com), [Rackspace](http://www.rackspace.com/)
+**Tested with OS:** Ubuntu 14.04 LTS x64
 
 ## Getting Started
 
@@ -38,31 +36,36 @@ myproject
 ├── myproject
 │   ├── apps
 │   │   └── __init__.py
-│   ├── __init__.py
-│   ├── settings
-│   │   ├── base.py
-│   │   ├── __init__.py
-│   │   ├── local.py
-│   │   └── production.py
 │   ├── templates
 │   │   ├── 403.html
 │   │   ├── 404.html
 │   │   ├── 500.html
 │   │   └── base.html
+│   ├── __init__.py
+│   ├── celery.py
+├── config
+│   ├── settings
+│   │   ├── base.py
+│   │   ├── __init__.py
+│   │   ├── local.py
+│   │   └── production.py
 │   ├── urls.py
 │   └── wsgi.py
 ├── README.md
 └── requirements.txt
 ```
 
-The main things to note are the locations of the `manage.py` and `wsgi.py` files.  If your project's structure is a little different, you may need to change the values in these 2 files:
+The main things to note are the locations of the `manage.py`, `wsgi.py` and `celery.py` files.  If your project's structure is a little different, you may need to change the values in these 2 files:
 
 - `roles/web/tasks/setup_django_app.yml`
 - `roles/web/templates/gunicorn_start.j2`
+- `roles/celery/templates/celery_start.j2`
 
 Also, if your app needs additional system packages installed, you can add them in `roles/web/tasks/install_additional_packages.yml`.
 
-I set some default values in the `env_vars` based on my open-source app, [YouTube Audio Downloader](https://github.com/jcalazan/youtube-audio-dl), so all you really have to do is type in this one command in the project root:
+If you setup your django project with the [cookiecutter template](https://github.com/RayCrafter/cookiecutter-django), just replace the repository link in `env_vars/base.yml` to your repository.
+
+I set some default values in the `env_vars` based on a test project, [Djangotest](https://github.com/RayCrafter/djangotest), so all you really have to do is type in this one command in the project root:
 
 ```
 vagrant up

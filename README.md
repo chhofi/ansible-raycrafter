@@ -26,6 +26,12 @@ A quick way to get started is with Vagrant and VirtualBox.
 - [Vagrant](http://www.vagrantup.com/downloads.html)
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
+Install all ansible requirements with:
+
+```
+$ ansible-galaxy install -r requirements.txt
+```
+
 The main settings to change here is in the **env_vars/base** file, where you can configure the location of your Git project, the project name, and application name which will be used throughout the Ansible configuration.
 
 Note that the default values in the playbooks assume that your project structure looks something like this:

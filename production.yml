@@ -11,6 +11,7 @@
   vars_files:
     - env_vars/base.yml
     - env_vars/dev.yml
+    - env_vars/elasticsearch.yml
 
   roles:
     - base
@@ -18,3 +19,5 @@
     - rabbitmq
     - web
     - celery
+    - f500.elasticsearch
+    - graylog2.graylog

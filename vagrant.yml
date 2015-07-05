@@ -18,10 +18,10 @@
     - base
     - jdauphant.ssl-certs
     - jdauphant.nginx
+    - mongodb
+    - f500.elasticsearch
+    - graylog2.graylog
     - db
     - rabbitmq
     - web
     - celery
-    - mongodb
-    - f500.elasticsearch
-    - graylog2.graylog

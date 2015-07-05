@@ -56,7 +56,7 @@ nginx_sites:
       }
   graylog:
     - listen 9000
-    - server_name graylog
+    - server_name {{ nginx_server_name }}
     - location / {
           proxy_pass http://localhost:9000/;
           proxy_set_header Host $host;

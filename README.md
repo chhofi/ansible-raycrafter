@@ -26,10 +26,10 @@ A quick way to get started is with Vagrant and VirtualBox.
 - [Vagrant](http://www.vagrantup.com/downloads.html)
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
-Install all ansible requirements with:
+Install all ansible requirements. You might have to specify a path for the roles where you have permissions. You can use the example below. Make sure not to commit the downloaded roles.:
 
 ```
-$ ansible-galaxy install -r requirements.txt
+$ ansible-galaxy install -r requirements.txt -p ./roles
 ```
 
 The main settings to change here is in the **env_vars/base** file, where you can configure the location of your Git project, the project name, and application name which will be used throughout the Ansible configuration.

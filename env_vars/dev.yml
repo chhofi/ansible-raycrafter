@@ -65,3 +65,12 @@ broker_url: "amqp://{{ rabbitmq_application_user }}:{{ rabbitmq_application_pass
 
 run_django_db_migrations: yes
 run_django_collectstatic: yes
+
+# Basic graylog server settings
+is_master: 'true'
+password_secret: 2jueVqZpwLLjaWxV # generate with pwgen -s 96 1
+root_password_sha2: 6b3a55e0261b0304143f805a24924d0c1c44524821305f31d9277843b8a10f4e
+
+# Basic graylog web interface settings
+web_server_uri: http://127.0.0.1:12900
+web_secret: 2jueVqZpwLLjaWxV # generate with pwgen -s 96 1

@@ -1,0 +1,56 @@
+ssl_certs_common_name: {{ application_name }}
+ssl_certs_local_privkey_path: '{{inventory_dir|default(playbook_dir)}}/files/ssl/application.key'
+ssl_certs_local_cert_path: '{{inventory_dir|default(playbook_dir)}}/files/ssl/application.pem'
+ssl_certs_country: "DE"
+ssl_certs_locality: "Stuttgart"
+ssl_certs_organization: "Hdm Stuttgart"
+ssl_certs_state: "BW"
+ssl_certs_generate_self_signed: true
+ssl_certs_key_size: "2048"
+
+nginx_configs: 
+  ssl:
+    - ssl_certificate_key {{ ssl_certs_privkey_path }}
+    - ssl_certificate     {{ ssl_certs_cert_path }}
+  upstream:
+    - "upstream wsgi_server { server unix: {{ virtualenv_path }}/run/gunicorn.sock fail_timeout=0; }"
+
+nginx_sites:
+  default:
+    - listen 80
+    - server_name {{ nginx_server_name }}
+    - rewrite ^ https://$server_name$request_uri? permanent
+  application:
+    - listen 443
+    - server_name {{ nginx_server_name }}
+    - ssl on
+    - client_max_body_size 4G
+    - access_log {{ nginx_access_log_file }}
+    - error_log {{ nginx_error_log_file }}
+    - location /static/ {
+          alias   {{ nginx_static_dir }};
+      }
+    - location /media/ {
+          alias   {{ nginx_media_dir }};
+      }
+    - location / {
+          if (-f {{ virtualenv_path }}/maintenance_on.html) {
+              return 503;
+          }
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto https;
+          proxy_set_header Host $http_host;
+          proxy_redirect off;
+          if (!-f $request_filename) {
+              proxy_pass http://wsgi_server;
+              break;
+          }
+      }
+    - error_page 500 502 504 /500.html
+    - location = /500.html {
+          root {{ project_path }}/{{ application_name }}/templates/;
+      }
+    - error page 503 /maintenance_on.html
+    - location = /maintenance_on.html {
+          root {{ virtualenv_path }}/;
+      }

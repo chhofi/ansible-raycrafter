@@ -12,9 +12,12 @@
     - env_vars/base.yml
     - env_vars/vagrant.yml
     - env_vars/elasticsearch.yml
+    - env_vars/nginx.yml
 
   roles:
     - base
+    - jdauphant.ssl-certs
+    - jdauphant.nginx
     - db
     - rabbitmq
     - web

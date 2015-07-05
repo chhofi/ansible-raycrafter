@@ -13,6 +13,7 @@
     - env_vars/vagrant.yml
     - env_vars/elasticsearch.yml
     - env_vars/nginx.yml
+    - env_vars/graylog.yml
 
   roles:
     - base

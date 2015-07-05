@@ -13,6 +13,7 @@
     - env_vars/dev.yml
     - env_vars/elasticsearch.yml
     - env_vars/nginx.yml
+    - env_vars/graylob.yml
 
   roles:
     - base

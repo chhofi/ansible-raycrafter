@@ -1,1 +1,1 @@
-graylog_web_java_opts: 'Djava.net.preferIPv4Stack=true -Dhttps.port=9000 -Dhttp.port=disabled'
+graylog_web_args: '-Dhttps.port=9000 -Dhttp.port=disabled'

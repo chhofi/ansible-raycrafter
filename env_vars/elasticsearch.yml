@@ -1,6 +1,6 @@
 elasticsearch_cluster_name: 'graylog2'
-elasticsearch_timezone: 'UTC'
-elasticsearch_version: '1.5'
+elasticsearch_timezone: 'Europe/Berlin'
+elasticsearch_version: '1.6'
 elasticsearch_discovery_zen_ping_unicast_hosts: '127.0.0.1:9300'
 elasticsearch_network_host: ''
 elasticsearch_network_bind_host: 'localhost'

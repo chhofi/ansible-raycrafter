@@ -1,2 +1,7 @@
 graylog_web_args: '-Dhttps.port=9000'
 graylog_web_port: 'disabled'
+
+graylog_root_timezone: Europe/Berlin
+# Rest
+graylog_rest_listen_uri: 'http://192.168.33.15:12900/'
+graylog_rest_transport_uri: 'http://192.168.33.15:12900/'

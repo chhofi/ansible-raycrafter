@@ -1,1 +1,2 @@
-graylog_web_args: '-Dhttps.port=9000 -Dhttp.port=disabled'
+graylog_web_args: '-Dhttps.port=9000'
+graylog_web_port: 'disabled'

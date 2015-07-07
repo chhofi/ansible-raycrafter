@@ -1,0 +1,8 @@
+---
+- name: Render input template
+  template: src=input.json.j2 dest=/tmp/{{item}}.json
+  with_items: graylog_inputs.keys()
+  changed_when: true
+  notify:
+   - Wait for Rest
+   - Add graylog inputs

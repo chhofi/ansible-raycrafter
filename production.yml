@@ -13,7 +13,7 @@
     - env_vars/dev.yml
     - env_vars/elasticsearch.yml
     - env_vars/nginx.yml
-    - env_vars/graylob.yml
+    - env_vars/graylog.yml
 
   roles:
     - base
@@ -23,6 +23,7 @@
     - f500.elasticsearch
     - graylog2.graylog
     - graylogfix
+    - grayloginput
     - db
     - rabbitmq
     - web

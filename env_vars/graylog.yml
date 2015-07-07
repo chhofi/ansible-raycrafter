@@ -2,16 +2,32 @@
 is_master: 'true'
 password_secret: 2jueVqZpwLLjaWxV # generate with pwgen -s 96 1
 root_password_sha2: 6b3a55e0261b0304143f805a24924d0c1c44524821305f31d9277843b8a10f4e
+graylog_root_password_unencrypted: admin
+
+# Rest
+graylog_rest_ip: '192.168.33.15'
+graylog_rest_port: '12900'
+graylog_rest_adress: '{{graylog_rest_ip}}:{{graylog_rest_port}}'
+graylog_web_server_uri: 'http://{{ graylog_rest_adress }}'
+graylog_rest_listen_uri: 'http://{{ graylog_rest_adress }}/'
+graylog_rest_transport_uri: 'http://{{ graylog_rest_adress }}/'
 
 # Basic graylog web interface settings
-web_server_uri: http://127.0.0.1:12900
+web_server_uri: 'http://127.0.0.1:{{graylog_rest_port}}'
 web_secret: 2jueVqZpwLLjaWxV # generate with pwgen -s 96 1
 
 graylog_web_args: '-Dhttps.port=9000'
 graylog_web_port: 'disabled'
-
 graylog_root_timezone: Europe/Berlin
-graylog_web_server_uri: 'http://192.168.33.15:12900'
-# Rest
-graylog_rest_listen_uri: 'http://192.168.33.15:12900/'
-graylog_rest_transport_uri: 'http://192.168.33.15:12900/'
+
+
+graylog_inputs:
+  pygelfudp:
+    node: ''
+    global: true
+    titel: pygelfudp
+    type: org.graylog2.inputs.gelf.udp.GELFUDPInput
+    configuration:
+      bind_address: '"0.0.0.0"'
+      port: 12201
+      

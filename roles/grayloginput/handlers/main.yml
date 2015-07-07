@@ -1,0 +1,7 @@
+---
+- name: Wait for Rest
+  wait_for: host="127.0.0.1" port={{graylog_rest_port}} state=drained
+
+- name: Add graylog inputs
+  shell: 'curl -X POST -H "Content-Type: application/json" -d "`cat /tmp/{{item}}.json`" http://{{ graylog_root_username }}:{{ graylog_root_password_unencrypted }}@{{ graylog_rest_adress }}/system/inputs'
+  with_items: graylog_inputs.keys()

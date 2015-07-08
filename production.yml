@@ -23,7 +23,7 @@
     - f500.elasticsearch
     - graylog2.graylog
     - graylogfix
-    - grayloginput
+    - graylog
     - db
     - rabbitmq
     - web

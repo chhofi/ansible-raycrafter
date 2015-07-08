@@ -15,7 +15,6 @@ options:
     description:
       - The input name. If an input with the same name already exists, nothing will be changed. Graylog supports multiple inputs with the same name but you cannot know the ids beforehand.
     required: true
-    default: null
   configuration:
     description:
       - Another dictionary of configuration values. These are the values you also see in the graylog web interface under /system/inputs. The available options can be found by requesting /system/inputs/types/{inputtype} via the rest api.
@@ -29,17 +28,14 @@ options:
     description:
       - Input type. A list of available inputs can be found by requesting /system/inputs/types via the rest api.
     required: true
-    default: null
   user:
     description:
      - The username for authentication.
     required: true
-    default: null
   password:
     description:
       - The password for authentication.
     required: true
-    default: null
   host:
     description:
       - the IP of the graylog web server.
@@ -127,21 +123,18 @@ sentbody:
 '''
 
 HEADERS = {'Content-type': 'application/json'}
+APIENDPOINT = '/system/inputs'
 
 
 def check_exists(module, conn):
-    conn.request('GET', '/system/inputs', headers=HEADERS)
+    conn.request('GET', APIENDPOINT, headers=HEADERS)
     r = conn.getresponse()
     if r.status != 200:
         module.fail_json(msg="Failed to check inputs", status=r.status, reason=r.reason)
     data = r.read()
     js = json.loads(data)
-    inputsmsg = ''
     for inp in js['inputs']:
         title = inp['message_input']['title']
-        if inputsmsg:
-           inputsmsg += ', '
-        inputsmsg += '%s' % title
         if title == module.params['title']:
             module.exit_json(changed=False, title=title, inputid=None)
 
@@ -156,7 +149,7 @@ def create_input(module, conn):
             'type': p['type'],
             }
     js = json.dumps(data)
-    conn.request('POST', '/system/inputs', headers=HEADERS, body=js)
+    conn.request('POST', APIENDPOINT, headers=HEADERS, body=js)
     r = conn.getresponse()
     if r.status != 201:
         module.fail_json(msg='Failed to create input', status=r.status, reason=r.reason, sentbody=data)

@@ -153,7 +153,8 @@ def create_input(module, conn):
     r = conn.getresponse()
     if r.status != 201:
         module.fail_json(msg='Failed to create input', status=r.status, reason=r.reason, sentbody=data)
-    return inputid
+    rjson = json.loads(r.read())
+    return rjson['id']
 
 
 def main():

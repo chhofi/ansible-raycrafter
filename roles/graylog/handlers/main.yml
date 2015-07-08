@@ -2,6 +2,21 @@
 - name: Wait for Rest
   wait_for: host="127.0.0.1" port={{graylog_rest_port}}
 
-- name: Add graylog inputs
-  shell: "curl -s -X GET -H\"Content-Type: application/json\" http://{{ graylog_root_username }}:{{ graylog_root_password_unencrypted }}@{{ graylog_rest_adress }}/system/inputs | jq \".inputs| .[] | .message_input | .title\" | grep '\"{{item}}\"' && curl -X POST -H \"Content-Type: application/json\" -d \"`cat /tmp/{{item}}.json`\" http://{{ graylog_root_username }}:{{ graylog_root_password_unencrypted }}@{{ graylog_rest_adress }}/system/inputs"
+- name: Create inputs
+  grayloginputs:
+    title: "{{item}}"
+    configuration: "{{graylog_inputs[item]['configuration']}}"
+    host: "{{graylog_rest_ip}}"
+    user: "{{graylog_root_username}}"
+    password: "{{graylog_root_password_unencrypted}}"
+    type: "{{graylog_inputs[item]['type']}}"
+    node: "{{graylog_inputs[item]['node']}}"
   with_items: graylog_inputs.keys()
+
+- name: Create content packs
+  graylogcontentpack:
+    srcjson: "{{item}}"
+    host: "{{graylog_rest_ip}}"
+    user: "{{graylog_root_username}}"
+    password: "{{graylog_root_password_unencrypted}}"
+  with_items: "{{graylog_contentpacks}}"

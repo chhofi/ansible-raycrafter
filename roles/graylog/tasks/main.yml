@@ -1,20 +1,8 @@
 ---
 
-- name: Create inputs
-  grayloginputs:
-    title: "{{item}}"
-    configuration: "{{graylog_inputs[item]['configuration']}}"
-    host: "{{graylog_rest_ip}}"
-    user: "{{graylog_root_username}}"
-    password: "{{graylog_root_password_unencrypted}}"
-    type: "{{graylog_inputs[item]['type']}}"
-    node: "{{graylog_inputs[item]['node']}}"
-  with_items: graylog_inputs.keys()
-
-- name: Create content packs
-  graylogcontentpack:
-    srcjson: "{{item}}"
-    host: "{{graylog_rest_ip}}"
-    user: "{{graylog_root_username}}"
-    password: "{{graylog_root_password_unencrypted}}"
-  with_items: "{{graylog_contentpacks}}"
+- name: Notify Graylog REST Handlers
+  debug: msg='Notify graylog handlers that need a access to the rest api'
+  notify:
+    - Wait for Rest
+    - Create inputs
+    - Create content packs

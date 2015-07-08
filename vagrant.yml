@@ -23,8 +23,8 @@
     - f500.elasticsearch
     - graylog2.graylog
     - graylogfix
-    - {role: graylog, tags: ['graylog']}
     - db
     - rabbitmq
     - web
     - celery
+    - {role: graylog, tags: ['graylog']}

@@ -3,10 +3,18 @@
 - name: Create inputs
   grayloginputs:
     title: "{{item}}"
-    host: "192.168.33.15"
     configuration: "{{graylog_inputs[item]['configuration']}}"
-    user: 'admin'
-    password: 'admin'
+    host: "{{graylog_rest_ip}}"
+    user: "{{graylog_root_username}}"
+    password: "{{graylog_root_password_unencrypted}}"
     type: "{{graylog_inputs[item]['type']}}"
     node: "{{graylog_inputs[item]['node']}}"
   with_items: graylog_inputs.keys()
+
+- name: Create content packs
+  graylogcontentpack:
+    src: "{{item}}"
+    host: "{{graylog_rest_ip}}"
+    user: "{{graylog_root_username}}"
+    password: "{{graylog_root_password_unencrypted}}"
+  with_items: graylog_contentpacks

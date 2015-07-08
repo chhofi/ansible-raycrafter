@@ -30,3 +30,5 @@ graylog_inputs:
       bind_address: '0.0.0.0'
       port: 12202
       
+graylog_contentpacks:
+  - "{{inventory_dir|default(playbook_dir)}}/files/contentpacks/nginx.json"

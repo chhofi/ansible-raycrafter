@@ -13,8 +13,8 @@
 
 - name: Create content packs
   graylogcontentpack:
-    src: "{{item}}"
+    srcjson: "{{item}}"
     host: "{{graylog_rest_ip}}"
     user: "{{graylog_root_username}}"
     password: "{{graylog_root_password_unencrypted}}"
-  with_items: graylog_contentpacks
+  with_items: "{{graylog_contentpacks}}"

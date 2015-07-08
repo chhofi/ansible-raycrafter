@@ -31,4 +31,4 @@ graylog_inputs:
       port: 12202
       
 graylog_contentpacks:
-  - "{{inventory_dir|default(playbook_dir)}}/files/contentpacks/nginx.json"
+  - "{{lookup('file', playbook_dir + '/files/contentpacks/nginx.json')}}"

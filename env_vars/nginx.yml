@@ -1,6 +1,6 @@
 ssl_certs_common_name: "{{ application_name }}"
-ssl_certs_local_privkey_path: "{{inventory_dir|default(playbook_dir)}}/files/ssl/application.key"
-ssl_certs_local_cert_path: "{{inventory_dir|default(playbook_dir)}}/files/ssl/application.pem"
+ssl_certs_local_privkey_path: "{{playbook_dir}}/files/ssl/application.key"
+ssl_certs_local_cert_path: "{{playbook_dir}}/files/ssl/application.pem"
 ssl_certs_country: "DE"
 ssl_certs_locality: "Stuttgart"
 ssl_certs_organization: "Hdm Stuttgart"

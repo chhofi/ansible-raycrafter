@@ -11,9 +11,9 @@ short_description: Adds a contentpack to graylog
 description:
   - Adds a contentpack to graylog if one with the same name and category does not yet exist
 options:
-  src:
+  srcjson:
     description:
-      - The conentpack json file.
+      - The conentpack json.
     required: true
   user:
     description:
@@ -46,7 +46,7 @@ author: "David Zuber (zuber.david@gmx.de)"
 EXAMPLES = '''
 # Create a contentpack
 - graylogcontentpack:
-    src: "{{inventory_dir|default(playbook_dir)}}/files/contentpacks/nginx.json"
+    srcjson: "{{lookup('file', playbook_dir + '/files/contentpacks/nginx.json')}}"
     host: "127.0.0.1"
     port: 12900
     user: 'admin'
@@ -91,12 +91,7 @@ APIENDPOINT = '/system/bundles'
 
 
 def load_contentpack(module):
-    f = module.params['src']
-    f = os.path.expanduser(f)
-    if not os.path.exists(f):
-        module.fail_json(msg="Failed to load contentpack. Is the path alright?" % (f))
-    with open(f, 'r') as fp:
-        js = json.load(fp)
+    js = json.loads(module.params['srcjson'])
     return js
 
 
@@ -112,7 +107,7 @@ def check_exists(module, conn, srcjson):
     for cp in js.get(srccategory, []):
         name = cp['name']
         if name == srcname:
-            module.exit_json(changed=False, name=name, category=category)
+            module.exit_json(changed=False, name=name, category=srccategory)
 
 
 def create_contentpack(module, conn, srcjson):
@@ -129,7 +124,7 @@ def create_contentpack(module, conn, srcjson):
 def main():
     module = AnsibleModule(
     argument_spec = dict(
-        src       = dict(required=True),
+        srcjson       = dict(required=True),
         user      = dict(required=True),
         password  = dict(required=True),
         host      = dict(default='127.0.0.1'),

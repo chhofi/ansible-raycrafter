@@ -2,7 +2,6 @@
 import base64
 import httplib
 import json
-import time
 
 
 DOCUMENTATION = '''

@@ -71,12 +71,12 @@ category:
     sample: Web Servers
 status:
     description: the response status code of the rest api request
-    returned: failure, when communicating with rest api
+    returned: failure, when communicating with the rest api
     type: integer
     sample: 404
 reason:
     description: The reason for the response
-    returned: failure, when communicating with rest api
+    returned: failure, when communicating with the rest api
     type: string
     sample: "Not found!"
 sentbody:
@@ -84,6 +84,11 @@ sentbody:
     returned: failure, when failing at creating the contentpack (not checking if it exists).
     type: string
     sample: {"id": null, "name": "nginx", "category": "Web Servers", ...}
+body:
+    description: The body from the response
+    returned: failure, when communicating with the rest api
+    type: string
+    sample: "No Content"
 '''
 
 HEADERS = {'Content-type': 'application/json'}
@@ -100,9 +105,10 @@ def check_exists(module, conn, srcjson):
     srccategory = srcjson['category']
     conn.request('GET', APIENDPOINT, headers=HEADERS)
     r = conn.getresponse()
-    if r.status != 200:
-        module.fail_json(msg="Failed to check contentpacks", status=r.status, reason=r.reason)
     data = r.read()
+    if r.status != 200:
+        module.fail_json(msg="Failed to check contentpacks", status=r.status,
+                         reason=r.reason, body=data)
     js = json.loads(data)
     for cp in js.get(srccategory, []):
         name = cp['name']
@@ -114,11 +120,22 @@ def create_contentpack(module, conn, srcjson):
     js = json.dumps(srcjson)
     conn.request('POST', APIENDPOINT, headers=HEADERS, body=js)
     r = conn.getresponse()
+    data = r.read()
     if r.status != 201:
-        module.fail_json(msg='Failed to create contentpack', status=r.status, reason=r.reason, sentbody=data)
+        module.fail_json(msg='Failed to create contentpack', status=r.status,
+                         reason=r.reason, sentbody=js, body=data)
     locheader = r.getheader('Location')
     bundleid = locheader.rsplit('/', 1)[1]
     return bundleid
+
+
+def setup_conentpack(module, conn, bundleid):
+    conn.request('POST', APIENDPOINT + '/%s/apply' % bundleid, headers=HEADERS)
+    r = conn.getresponse()
+    data = r.read()
+    if r.status != 204:
+        module.fail_json(msg='Failed to apply contentpack', status=r.status, reason=r.reason,
+                         body=data)
 
 
 def main():
@@ -145,6 +162,7 @@ def main():
     if module.check_mode:
         module.exit_json(changed=True)
     bundleid = create_contentpack(module, conn, srcjson)
+    setup_conentpack(module, conn, bundleid)
     module.exit_json(changed=True, name=srcjson['name'],
                      category=srcjson['category'], contentpackid=bundleid)
 

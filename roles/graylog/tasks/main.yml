@@ -2,6 +2,7 @@
 
 - name: Notify Graylog REST Handlers
   debug: msg='Notify graylog handlers that need a access to the rest api'
+  changed_when: true
   notify:
     - Wait for Rest
     - Create inputs

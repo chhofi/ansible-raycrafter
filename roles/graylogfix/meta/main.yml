@@ -1,3 +1,4 @@
 ---
 dependencies:
+- { role: f500.elasticsearch }
 - { role: graylog2.graylog }

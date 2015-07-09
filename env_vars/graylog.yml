@@ -1,5 +1,5 @@
 # Basic graylog server settings
-graylog_packages_url: https://packages.graylog2.org/repo/packages/graylog-1.1-repository-ubuntu14.04_latest.deb
+graylog_packages_url_fixed: https://packages.graylog2.org/repo/packages/graylog-1.1-repository-ubuntu14.04_latest.deb
 is_master: 'true'
 password_secret: 2jueVqZpwLLjaWxV # generate with pwgen -s 96 1
 root_password_sha2: 6b3a55e0261b0304143f805a24924d0c1c44524821305f31d9277843b8a10f4e

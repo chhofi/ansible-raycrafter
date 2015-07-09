@@ -20,15 +20,8 @@ web_secret: 2jueVqZpwLLjaWxV # generate with pwgen -s 96 1
 graylog_web_args: '-Dhttps.port=9000'
 graylog_web_port: 'disabled'
 graylog_root_timezone: Europe/Berlin
-
-
-graylog_inputs:
-  djangoapplication:
-    node: ''
-    type: org.graylog2.inputs.gelf.udp.GELFUDPInput
-    configuration:
-      bind_address: '127.0.0.1'
-      port: 12201
       
 graylog_contentpacks:
   - "{{lookup('file', playbook_dir + '/files/contentpacks/nginx.json')}}"
+  - "{{lookup('file', playbook_dir + '/files/contentpacks/django.json')}}"
+  - "{{lookup('file', playbook_dir + '/files/contentpacks/gunicorn.json')}}"

@@ -35,4 +35,6 @@ exec gunicorn \
     --user $USER --group $GROUP \
     --log-level info \
     --bind unix:$SOCKFILE \
+    --log-syslog-to udp://localhost:12303 \
+    --log-syslog
     config.wsgi

@@ -1,0 +1,144 @@
+{
+  "id" : null,
+  "name" : "Django",
+  "description" : "For a django application which logs to 12201 via GELF UDP.",
+  "category" : "Web Servers",
+  "inputs" : [ {
+    "title" : "djangoapplication",
+    "configuration" : {
+      "override_source" : "",
+      "recv_buffer_size" : 16384,
+      "bind_address" : "127.0.0.1",
+      "port" : 12201
+    },
+    "type" : "org.graylog2.inputs.gelf.udp.GELFUDPInput",
+    "global" : false,
+    "extractors" : [ ],
+    "static_fields" : {
+      "from_django" : "true"
+    }
+  } ],
+  "streams" : [ {
+    "id" : "559eb5930cf2a42eed9c076c",
+    "title" : "django HTTP 404s",
+    "description" : "All requests that were answered with HTTP 404 by django",
+    "disabled" : false,
+    "outputs" : [ ],
+    "stream_rules" : [ {
+      "type" : "EXACT",
+      "field" : "from_django",
+      "value" : "true",
+      "inverted" : false
+    }, {
+      "type" : "EXACT",
+      "field" : "status_code",
+      "value" : "404",
+      "inverted" : false
+    } ]
+  }, {
+    "id" : "559eb5d10cf2a42eed9c07b2",
+    "title" : "django HTTP 4XXs",
+    "description" : "All requests that were answered with a HTTP code in the 400 range by django",
+    "disabled" : false,
+    "outputs" : [ ],
+    "stream_rules" : [ {
+      "type" : "EXACT",
+      "field" : "from_django",
+      "value" : "true",
+      "inverted" : false
+    }, {
+      "type" : "GREATER",
+      "field" : "status_code",
+      "value" : "399",
+      "inverted" : false
+    }, {
+      "type" : "SMALLER",
+      "field" : "status_code",
+      "value" : "500",
+      "inverted" : false
+    } ]
+  }, {
+    "id" : "559eb54f0cf2a42eed9c0721",
+    "title" : "django",
+    "description" : "All django logs",
+    "disabled" : false,
+    "outputs" : [ ],
+    "stream_rules" : [ {
+      "type" : "EXACT",
+      "field" : "from_django",
+      "value" : "true",
+      "inverted" : false
+    } ]
+  } ],
+  "outputs" : [ ],
+  "dashboards" : [ {
+    "title" : "Django overview",
+    "description" : "Overview of requests handled by django",
+    "dashboard_widgets" : [ {
+      "description" : "HTTP 4XXs Last 24h",
+      "type" : "STREAM_SEARCH_RESULT_COUNT",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "lower_is_better" : true,
+        "trend" : true,
+        "stream_id" : "559eb5d10cf2a42eed9c07b2",
+        "query" : "*"
+      },
+      "col" : 1,
+      "row" : 1,
+      "cache_time" : 10
+    }, {
+      "description" : "HTTP 4XXs Last 24h",
+      "type" : "SEARCH_RESULT_CHART",
+      "configuration" : {
+        "interval" : "minute",
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "stream_id" : "559eb5d10cf2a42eed9c07b2",
+        "query" : "*"
+      },
+      "col" : 2,
+      "row" : 1,
+      "cache_time" : 10
+    }, {
+      "description" : "Response Codes Last 24h",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "field" : "status_code",
+        "stream_id" : "559eb54f0cf2a42eed9c0721",
+        "query" : "*",
+        "show_data_table" : true,
+        "show_pie_chart" : false
+      },
+      "col" : 2,
+      "row" : 3,
+      "cache_time" : 10
+    }, {
+      "description" : "Response Codes Last Hour",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 3600
+        },
+        "field" : "status_code",
+        "stream_id" : "559eb54f0cf2a42eed9c0721",
+        "query" : "*",
+        "show_data_table" : true,
+        "show_pie_chart" : false
+      },
+      "col" : 3,
+      "row" : 3,
+      "cache_time" : 10
+    } ]
+  } ]
+}

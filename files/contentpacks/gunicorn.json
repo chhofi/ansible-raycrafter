@@ -1,0 +1,72 @@
+{
+  "id" : null,
+  "name" : "Gunicorn",
+  "description" : "Green Unicorn syslog UDP logs to 12303.",
+  "category" : "Web Servers",
+  "inputs" : [ {
+    "title" : "gunicorn",
+    "configuration" : {
+      "override_source" : "",
+      "allow_override_date" : true,
+      "recv_buffer_size" : 1048576,
+      "bind_address" : "127.0.0.1",
+      "port" : 12303
+    },
+    "type" : "org.graylog2.inputs.syslog.udp.SyslogUDPInput",
+    "global" : false,
+    "extractors" : [ ],
+    "static_fields" : {
+      "from_gunicorn" : "true"
+    }
+  } ],
+  "streams" : [ {
+    "id" : "559e92500cf2a42eed9be117",
+    "title" : "gunicorn",
+    "description" : "All gunicorn logs",
+    "disabled" : false,
+    "outputs" : [ ],
+    "stream_rules" : [ {
+      "type" : "EXACT",
+      "field" : "from_gunicorn",
+      "value" : "true",
+      "inverted" : false
+    } ]
+  } ],
+  "outputs" : [ ],
+  "dashboards" : [ {
+    "title" : "Gunicorn overview",
+    "description" : "Overview over Gunicorn logs",
+    "dashboard_widgets" : [ {
+      "description" : "Messages Last 24h",
+      "type" : "STREAM_SEARCH_RESULT_COUNT",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "lower_is_better" : false,
+        "trend" : true,
+        "stream_id" : "559e92500cf2a42eed9be117",
+        "query" : "*"
+      },
+      "col" : 1,
+      "row" : 1,
+      "cache_time" : 10
+    }, {
+      "description" : "Messages Last 24h",
+      "type" : "SEARCH_RESULT_CHART",
+      "configuration" : {
+        "interval" : "minute",
+        "timerange" : {
+          "type" : "relative",
+          "range" : 86400
+        },
+        "stream_id" : "559e92500cf2a42eed9be117",
+        "query" : "*"
+      },
+      "col" : 2,
+      "row" : 1,
+      "cache_time" : 10
+    } ]
+  } ]
+}

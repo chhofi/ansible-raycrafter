@@ -1,0 +1,11 @@
+---
+
+- name: Supervisor reread
+  command: supervisorctl reread
+
+- name: Supervisor update
+  command: supervisorctl update
+
+- name: Restart Supervisor Programms
+  supervisorctl: name={{ item }} state=restarted
+  with_items: supervisor_restart_programms

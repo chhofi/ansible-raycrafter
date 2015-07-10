@@ -1,18 +1,10 @@
 ---
 
-- name: Install Supervisor
-  apt: name=supervisor update_cache={{ update_apt_cache }} state=installed
-  tags:
-    - celery
-
-- name: Ensure supervisor service is started
-  service: name=supervisor state=started enabled=yes
-  tags:
-    - celery
-
 - name: Create the Supervisor config file for {{ celery_application_name }}
   template: src=supervisor_{{ celery_application_name }}.conf.j2
             dest=/etc/supervisor/conf.d/{{ celery_application_name }}.conf
+  notify: Supervisor reread
+  notify: Supervisor update
   tags:
     - celery
 
@@ -29,15 +21,5 @@
         owner={{ celery_user }}
         group={{ celery_group }}
         state=touch
-  tags:
-    - celery
-
-- name: Re-read the Supervisor config files
-  command: supervisorctl reread
-  tags:
-    - celery
-
-- name: Update Supervisor to add the app in the process group
-  command: supervisorctl update
   tags:
     - celery

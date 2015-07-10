@@ -11,7 +11,7 @@
     virtualenv: "{{ virtualenv_path }}"
     settings: "{{ django_settings_file }}"
   environment: django_environment
-  when: run_django_syncdb is defined and run_django_sync_db
+  when: django_run_syncdb is defined and django_run_syncdb
   tags: django.syncdb
 
 - name: Run Django database migrations
@@ -21,7 +21,7 @@
     virtualenv: "{{ virtualenv_path }}"
     settings: "{{ django_settings_file }}"
   environment: django_environment
-  when: run_django_db_migrations is defined and run_django_db_migrations
+  when: django_run_db_migrations is defined and django_run_db_migrations
   tags: django.migrate
 
 - name: Run Django collectstatic
@@ -31,7 +31,7 @@
     virtualenv: "{{ virtualenv_path }}"
     settings: "{{ django_settings_file }}"
   environment: django_environment
-  when: run_django_collectstatic is defined and run_django_collectstatic
+  when: django_run_collectstatic is defined and django_run_collectstatic
   tags: django.collectstatic
 
 - name: Copy createsuperuser script

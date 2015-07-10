@@ -16,7 +16,9 @@
 
 - name: Ensure the PostgreSQL service is running
   service: name=postgresql state=started enabled=yes
-  tags: postgres
+  tags:
+    - service
+    - postgres
 
 - name: Ensure database is created
   sudo_user: postgres

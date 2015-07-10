@@ -1,3 +1,13 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
 .idea
 .vagrant
 vagrant_ansible_inventory_default
+
+# Sphinx documentation
+docs/_build/
+
+# Flymake
+*_flymake.py

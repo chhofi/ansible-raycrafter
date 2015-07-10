@@ -1,5 +1,7 @@
 ---
 
+update_apt_cache: true
+
 rabbitmq_server_name: "{{ inventory_hostname }}"
 
 rabbitmq_admin_user: admin

@@ -1,5 +1,7 @@
 ---
 
+update_apt_cache: true
+
 memcached_listen: 127.0.0.1
 memcached_port: 11211
 memcached_user: nobody

@@ -4,7 +4,8 @@
   apt: name={{ item }} update_cache={{ update_apt_cache }} force=yes state=installed
   with_items:
     - supervisor
-  tags: packages
+  tags: [packages,supervisor]
 
 - name: Ensure supervisor service is started
   service: name=supervisor state=started enabled=yes
+  tags: supervisor

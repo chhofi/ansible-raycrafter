@@ -4,6 +4,7 @@
   apt: name={{ item }} update_cache={{ update_apt_cache }} force=yes state=latest
   with_items:
     - language-pack-de
+  tags: packages
 
 - name: Install PostgreSQL
   apt: name={{ item }} update_cache={{ update_apt_cache }} state=installed

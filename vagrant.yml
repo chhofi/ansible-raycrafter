@@ -18,7 +18,6 @@
   roles:
     - base
     - supervisor
-    - nginxrepofix
     - jdauphant.ssl-certs
     - jdauphant.nginx
     - f500.elasticsearch

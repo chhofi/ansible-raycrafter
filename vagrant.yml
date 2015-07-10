@@ -21,7 +21,6 @@
     - nginxrepofix
     - jdauphant.ssl-certs
     - jdauphant.nginx
-    - mongodb
     - f500.elasticsearch
     - graylog2.graylog
     - graylogfix

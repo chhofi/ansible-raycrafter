@@ -7,7 +7,7 @@
   grayloginputs:
     title: "{{item}}"
     configuration: "{{graylog_inputs[item]['configuration']}}"
-    host: "{{graylog_rest_ip}}"
+    host: "{{graylog_rest_host}}"
     port: "{{graylog_rest_port}}"
     user: "{{graylog_root_username}}"
     password: "{{graylog_root_password_unencrypted}}"
@@ -19,7 +19,7 @@
 - name: Create content packs
   graylogcontentpack:
     srcjson: "{{item}}"
-    host: "{{graylog_rest_ip}}"
+    host: "{{graylog_rest_host}}"
     port: "{{graylog_rest_port}}"
     user: "{{graylog_root_username}}"
     password: "{{graylog_root_password_unencrypted}}"

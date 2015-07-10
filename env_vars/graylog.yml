@@ -17,7 +17,7 @@ graylog_rest_transport_uri: 'http://{{ graylog_rest_adress }}/'
 web_server_uri: 'http://127.0.0.1:{{graylog_rest_port}}'
 web_secret: 2jueVqZpwLLjaWxV # generate with pwgen -s 96 1
 
-graylog_web_args: '-Dhttps.port=9000'
+graylog_web_listen_address: '127.0.0.1'
 graylog_web_port: 'disabled'
 graylog_root_timezone: Europe/Berlin
       

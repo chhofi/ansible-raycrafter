@@ -1,6 +1,6 @@
 ---
 
 update_apt_cache: true
-db_user: "{{ application_name }}"
-db_name: "{{ application_name }}"
+db_user: "dbuser"
+db_name: "mydb"
 db_password: password

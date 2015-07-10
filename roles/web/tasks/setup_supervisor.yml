@@ -5,8 +5,8 @@
             dest=/etc/supervisor/conf.d/{{ application_name }}.conf
             backup=yes
 
-- name: Re-read the Supervisor config files
-  supervisorctl: name={{ application_name }} state=present
-
-- name: Restart Supervisor
-  supervisorctl: name={{ application_name }} state=restarted
+- name: Add {{ application_name }} to supervisor
+  set_fact: "{{ supervisor_restart_programms}} + [{{ application_name }}]"
+  notify:
+    - Supervisor reread
+    - Supervisor restart

@@ -1,5 +1,5 @@
 - name: Ensure APT official nginx key
-  apt_key: url=http://nginx.org/keys/nginx_signing.key
+  apt_key: url="{{ nginx_key_url }}"
   tags: [packages,nginx]
 
 - name: Ensure APT official nginx repository

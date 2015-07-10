@@ -17,6 +17,7 @@
 
   roles:
     - base
+    - nginxrepofix
     - jdauphant.ssl-certs
     - jdauphant.nginx
     - mongodb

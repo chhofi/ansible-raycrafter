@@ -1,5 +1,9 @@
 ---
 
+db_user: "{{ application_name }}"
+db_name: "{{ application_name }}"
+db_password: password
+
 # Gunicorn settings
 gunicorn_user: "{{ application_name }}"
 gunicorn_group: webapps

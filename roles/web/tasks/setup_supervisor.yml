@@ -4,9 +4,11 @@
   template: src=supervisor_config.j2
             dest=/etc/supervisor/conf.d/{{ application_name }}.conf
             backup=yes
+  register: applicationconfigfileresult
 
 - name: Add {{ application_name }} to supervisor
   set_fact: "{{ supervisor_restart_programms}} + [{{ application_name }}]"
+  when: applicationconfigfileresult.changed or applicationfileperresult.changed
   notify:
     - Supervisor reread
     - Supervisor restart

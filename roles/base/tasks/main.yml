@@ -29,3 +29,6 @@
 - name: Install virtualenv
   pip: name=virtualenv
   tags: packages
+
+- name: Make sure ntp is running
+  service: name=ntp state=present enables=yes

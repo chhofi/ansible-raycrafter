@@ -2,5 +2,6 @@
 
 graylog_rest_host: 127.0.0.1
 graylog_rest_port: 12900
+graylog_root_password_unencrypted: admin
 graylog_inputs: {}
 graylog_contentpacks: []

@@ -29,4 +29,4 @@
     - rabbitmq
     - web
     - celery
-    - {role: graylog, tags: ['graylog']}
+    - graylog

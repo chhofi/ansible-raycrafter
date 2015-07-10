@@ -1,6 +1,7 @@
 ---
 - name: Wait for Rest
   wait_for: host={{graylog_rest_ip}} port={{graylog_rest_port}}
+  tags: graylog
 
 - name: Create inputs
   grayloginputs:
@@ -12,6 +13,7 @@
     type: "{{graylog_inputs[item]['type']}}"
     node: "{{graylog_inputs[item]['node']}}"
   with_items: graylog_inputs.keys()
+  tags: graylog
 
 - name: Create content packs
   graylogcontentpack:
@@ -20,3 +22,4 @@
     user: "{{graylog_root_username}}"
     password: "{{graylog_root_password_unencrypted}}"
   with_items: "{{graylog_contentpacks}}"
+  tags: graylog

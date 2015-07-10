@@ -7,3 +7,5 @@
     - Wait for Rest
     - Create inputs
     - Create content packs
+  tags:
+    - graylog

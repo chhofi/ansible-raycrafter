@@ -15,17 +15,21 @@
 - name: Install Graylog repository
   apt: deb=/tmp/graylog_repository_fixed.deb state=installed dpkg_options='force-all'
   register: install_repo_fixed
+  tags: packages
 
 - apt: update_cache=yes
   when: install_repo_fixed.changed == True
+  tags: packages
 
 - name: Install Graylog server
   apt: name=graylog-server state=latest
   notify: restart graylog-server
+  tags: packages
 
 - name: Install Graylog web UI
   apt: name=graylog-web state=latest
   notify: restart graylog-web
+  tags: packages
 
 - name: Fix Graylog web defaults
   template: src=graylog.web.default.j2 dest=/etc/default/graylog-web owner=graylog group=graylog mode=0644

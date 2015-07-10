@@ -15,4 +15,6 @@
 
 - name: Ensure the Memcached service is running
   service: name=memcached state=started enabled=yes
-  tags: memcached
+  tags: 
+    - memcached
+    - service

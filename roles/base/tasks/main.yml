@@ -32,3 +32,4 @@
 
 - name: Make sure ntp is running
   service: name=ntp state=present enables=yes
+  tags: service

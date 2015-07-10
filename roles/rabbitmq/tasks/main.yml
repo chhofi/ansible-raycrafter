@@ -27,3 +27,4 @@
 
 - name: Ensure that the RabbitMQ service is running
   service: name=rabbitmq-server state=started enabled=yes
+  tags: service

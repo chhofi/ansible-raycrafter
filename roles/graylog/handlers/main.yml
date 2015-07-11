@@ -1,6 +1,6 @@
 ---
 - name: Wait for Rest
-  wait_for: host={{graylog_rest_ip}} port={{graylog_rest_port}}
+  wait_for: host={{graylog_rest_host}} port={{graylog_rest_port}}
   tags: graylog
 
 - name: Create inputs

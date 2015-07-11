@@ -6,14 +6,14 @@ setup_git_repo: true
 project_name: djangotest
 application_name: "{{ project_name }}"
 virtualenv_root: "/webapps"
-virtualenv_path: "{{ virtualenv_path }}/{{ application_name }}"
+virtualenv_path: "{{ virtualenv_root }}/{{ application_name }}"
 project_path: "{{ virtualenv_path }}/{{ project_name }}"
 application_log_dir: "{{ virtualenv_path }}/logs"
 application_log_file: "{{ application_log_dir }}/gunicorn_supervisor.log"
 requirements_file: "{{ project_path }}/requirements.txt"
 
-superuser_name: david
-superuser_email: zuber.david@gmx.de
+superuser_name: superuser
+superuser_email: superuser@example.com
 superuser_password: password
 
 db_user: "{{ application_name }}"

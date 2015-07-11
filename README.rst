@@ -16,5 +16,8 @@ Ansible Playbook designed for running a Raycrafter Master Server. It installs an
 - Memcached
 - Celery
 - RabbitMQ
+- Elasticsearch
+- MongoDB
+- Graylog Server/Web Interface
 
 **Tested with OS:** Ubuntu 14.04 LTS x64

@@ -7,7 +7,9 @@ Contents:
    :maxdepth: 2
 
    overview
-   usage
+   quickstart
+   ansibleguide
+   django
    roles
 
 

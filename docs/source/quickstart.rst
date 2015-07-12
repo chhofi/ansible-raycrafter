@@ -24,10 +24,10 @@ Configuration
 
 There are two sets of configurations: ``env_vars/vagrant.yml`` and ``env_vars/production.yml``.
 Here you configure your setup, like the location of your Git_ project, the project name, and application name which will be used throughout the Ansible_ configuration.
-For more details see the documentation_.
+For more information see :ref:`configuration`.
 
 I set some default values in ``env_vars`` based on a test project Djangotest_.
-If you want to create your own Django_ project I recommend to use the Cookiecutter_ template: Cookiecutter-Django_. It is supposed to work out of the box with this setup. For more specific information on how to setup your Django_ project see the :ref:`Django <django>`.
+If you want to create your own Django_ project I recommend to use the Cookiecutter_ template: Cookiecutter-Django_. It is supposed to work out of the box with this setup. For more specific information on how to setup your Django_ project see :ref:`django`.
 
 +++++++
 Vagrant

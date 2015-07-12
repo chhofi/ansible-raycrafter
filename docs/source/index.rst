@@ -9,6 +9,7 @@ Contents:
    overview
    quickstart
    ansibleguide
+   configuration
    django
    roles
 

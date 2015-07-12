@@ -52,8 +52,6 @@ django_environment:
   DJANGO_SECRET_KEY: "{{ django_secret_key }}"
   MEDIA_ROOT: "{{ nginx_media_dir }}"
   STATIC_ROOT: "{{ nginx_static_dir }}"
-  DATABASE_USER: "{{ db_user }}"
-  DATABASE_PASSWORD: "{{ db_password }}"
   DATABASE_URL: "postgres://{{ db_user }}:{{ db_password}}@127.0.0.1:5432/{{ db_name }}"
   DJANGO_EMAIL_HOST: "{{ django_email_host|default(omit) }}"
   EMAIL_PORT: "{{ django_email_port}}"

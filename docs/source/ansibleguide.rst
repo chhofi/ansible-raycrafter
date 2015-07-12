@@ -17,4 +17,4 @@ Run the production playbook ``production.yml``::
 
 If you're testing with vagrant, and the VM is already running, you can use this command::
 
-  ansible-playbook -i vagrant_ansible_inventory_default --private-key=~/.vagrant.d/insecure_private_key vagrant.yml
+  $ ansible-playbook -i vagrant_ansible_inventory_default --private-key=~/.vagrant.d/insecure_private_key vagrant.yml

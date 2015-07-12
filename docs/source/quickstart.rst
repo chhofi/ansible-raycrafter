@@ -44,6 +44,27 @@ Access the Graylog_ web-interface via: https://192.168.33.15:9000
 That's it. One command, a little waiting and you are good to go.
 For information on how to setup remote machines without vagrant see the :ref:`Ansible Guide<ansibleguide>`.
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Additional vagrant commands
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+SSH to the box::
+
+  vagrant ssh
+
+Re-provision the box to apply the changes you made to the Ansible configuration::
+
+  vagrant provision
+
+Reboot the box::
+
+  vagrant reload
+
+Shut the box down::
+
+  vagrant halt
+
+
 .. _Graylog: https://www.graylog.org/
 .. _VirtualBox: https://virtualbox.org/
 .. _Vagrant: https://vagrantup.com/

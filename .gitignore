@@ -1,3 +1,21 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
 .idea
 .vagrant
 vagrant_ansible_inventory_default
+
+# Sphinx documentation
+docs/build/
+
+# Flymake
+*_flymake.py
+
+# Ignore roles that might get downloaded
+roles/f500.elasticsearch/
+roles/geerlingguy.java/
+roles/graylog2.graylog/
+roles/jdauphant.nginx/
+roles/jdauphant.ssl-certs/
+roles/lesmyrmidons.mongodb/

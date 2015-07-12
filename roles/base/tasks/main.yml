@@ -24,9 +24,12 @@
     - python-dev
     - python-pip
     - python-pycurl
-    - supervisor
   tags: packages
 
 - name: Install virtualenv
   pip: name=virtualenv
   tags: packages
+
+- name: Make sure ntp is running
+  service: name=ntp state=present enables=yes
+  tags: service

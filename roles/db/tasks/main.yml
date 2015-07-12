@@ -4,6 +4,7 @@
   apt: name={{ item }} update_cache={{ update_apt_cache }} force=yes state=latest
   with_items:
     - language-pack-de
+  tags: packages
 
 - name: Install PostgreSQL
   apt: name={{ item }} update_cache={{ update_apt_cache }} state=installed
@@ -15,6 +16,9 @@
 
 - name: Ensure the PostgreSQL service is running
   service: name=postgresql state=started enabled=yes
+  tags:
+    - service
+    - postgres
 
 - name: Ensure database is created
   sudo_user: postgres
@@ -24,6 +28,7 @@
                  lc_ctype='en_US.UTF-8'
                  template='template0'
                  state=present
+  tags: postgres
 
 - name: Ensure user has access to the database
   sudo_user: postgres
@@ -32,9 +37,11 @@
                    password={{ db_password }}
                    priv=ALL
                    state=present
+  tags: postgres
 
 - name: Ensure user does not have unnecessary privileges
   sudo_user: postgres
   postgresql_user: name={{ db_user }}
                    role_attr_flags=NOSUPERUSER,NOCREATEDB
                    state=present
+  tags: postgres

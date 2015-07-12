@@ -42,4 +42,31 @@ Stack:
 .. _VirtualBox: https://virtualbox.org/
 .. _Vagrant: https://vagrantup.com/
 .. _Ansible: http://www.ansible.com/
-.. _Raycrafter: https://github.com/RayCrafter
+.. _Raycrafter: https://github.com/RayCrafter/
+.. _Django: https://www.djangoproject.com/
+
+------------
+Architecture
+------------
+
+Master Server - HLRS interaction
+
+.. figure:: architecture.png
+
+----------------------
+Task Queue with Celery
+----------------------
+
+Celery is used to handle long running tasks like transferring files or submitting jobs.
+
+.. figure:: http://blog.langoor.mobi/wp-content/uploads/2013/07/django_celery_architecture.png
+   :alt: Celery Architecture
+
+---------------------------
+Logging Server with Graylog
+---------------------------
+
+Graylog Server setup.
+
+.. figure:: http://docs.graylog.org/en/latest/_images/simple_setup.png
+   :alt: Graylog Architecture

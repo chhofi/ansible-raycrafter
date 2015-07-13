@@ -49,24 +49,22 @@ Stack:
 Architecture
 ------------
 
-Master Server - HLRS interaction
+This graph shows the interaction between ``Master Server`` and the ``Cray XC40 'Hornet'``.
 
 .. figure:: architecture.png
 
-----------------------
-Task Queue with Celery
-----------------------
+Django_ has most of the business logic on the server side. It is served with Gunicorn_ and Nginx_.
+You can add new jobs or query information via a REST API.
 
-Celery is used to handle long running tasks like transferring files or submitting jobs.
+When the user submits a new job to Django_, the job is stored in the PostgreSQL_ database. Because submitting jobs to the cluster takes long, the work is pushed to Celery_ workers.
+The workers ssh onto the cluster to submit jobs, or transfer input and output data.
+Django_ uses a message broker (RabbitMQ_) to send tasks to Celery_. The results of the tasks are stored in the database.
 
-.. figure:: http://blog.langoor.mobi/wp-content/uploads/2013/07/django_celery_architecture.png
-   :alt: Celery Architecture
+Submitting a job to the cluster works by logging onto the cluster via ssh and executing the ``qsub`` command.
+The job stays in a Queue until a ``MOM node`` processess it. ``aprun`` executes a programm on the ``compute nodes``.
 
----------------------------
-Logging Server with Graylog
----------------------------
+On the compute nodes, a Python client is started. The client asks Django_ what job it should render and then executes the renderer. The output of the renderer can be transfered back by Celery_ workers.
 
-Graylog Server setup.
-
-.. figure:: http://docs.graylog.org/en/latest/_images/simple_setup.png
-   :alt: Graylog Architecture
+All logs are aggregated by a Graylog_ server. The Python client on the cluster inspects the logs of the renderer and sends them back.
+Graylog_ also has a web interface, where you can create metrics and dashboards to quickly inspect the status of the jobs and servers.
+Logs are processed and indexed by Elasticsearch_. MongoDB_ is used for some metadata by Graylog_.

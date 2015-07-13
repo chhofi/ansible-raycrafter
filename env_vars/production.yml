@@ -3,6 +3,7 @@
 project_name: djangotest
 application_name: "{{ project_name}}"
 timezone: Europe/Berlin
+language_pack: language-pack-de
 
 # web --------------------------------------------------------------------------
 git_repo: https://github.com/RayCrafter/djangotest.git

@@ -5,10 +5,6 @@ application_name: "{{ project_name}}"
 timezone: Europe/Berlin
 language_pack: language-pack-de
 
-# java -------------------------------------------------------------------------
-java_packages:
-  - oracle-java8-installer
-
 # web --------------------------------------------------------------------------
 git_repo: https://github.com/RayCrafter/djangotest.git
 git_branch: develop
@@ -62,7 +58,7 @@ django_environment:
   EMAIL_PORT: "{{ django_email_port}}"
   EMAIL_HOST_USER: "{{ django_email_host_user|default(omit) }}"
   EMAIL_HOST_PASSWORD: "{{ django_email_host_password|default(omit) }}"
-  DJANGO_DEFAULT_FROM_EMAIL: "{{ application_name}} <noreply@{{ ansible_eth0.ipv4.address }}>"
+  DJANGO_DEFAULT_FROM_EMAIL: "{{ application_name}} <noreply@{{ ansible_eth1.ipv4.address }}>"
   BROKER_URL: "{{ django_broker_url|default(omit) }}"
 
 # graylog2.graylog -------------------------------------------------------------
@@ -70,6 +66,9 @@ django_environment:
 graylog_is_master: 'true'
 graylog_root_email: ''
 graylog_root_timezone: '{{ timezone }}'
+
+
+graylog_elasticsearch_transport_tcp_port: 9350
 
 # Rest
 graylog_rest_host: '127.0.0.1'
@@ -169,7 +168,7 @@ nginx_sites:
           root {{ virtualenv_path }}/;
       }
   graylog:
-    - listen {{ansible_eth0.ipv4.address}}:{{graylog_web_port}}
+    - listen {{ansible_eth1.ipv4.address}}:{{graylog_web_port}}
     - server_name {{ nginx_server_name }}
     - ssl on
     - location / {
@@ -182,6 +181,15 @@ nginx_sites:
 # elasticsearch ----------------------------------------------------------------
 elasticsearch_timezone: '{{ timezone }}'
 elasticsearch_version: '1.6'
+elasticsearch_discovery_zen_ping_unicast_hosts: '127.0.0.1:9300'
+elasticsearch_cluster_name: 'graylog2'
+elasticsearch_network_host: ''
+elasticsearch_network_bind_host: ''
+elasticsearch_network_publish_host: ''
+elasticsearch_index_number_of_shards: '4'
+elasticsearch_index_number_of_replicas: '0'
+elasticsearch_gateway_recover_after_nodes: '1'
+elasticsearch_gateway_expected_nodes: '1'
 
 # celery -----------------------------------------------------------------------
 celery_num_workers: 2

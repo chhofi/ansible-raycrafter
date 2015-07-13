@@ -51,7 +51,8 @@ Architecture
 
 This graph shows the interaction between ``Master Server`` and the ``Cray XC40 'Hornet'``.
 
-.. figure:: architecture.png
+.. image:: architecture.png
+   :scale: 100 %
 
 Django_ has most of the business logic on the server side. It is served with Gunicorn_ and Nginx_.
 You can add new jobs or query information via a REST API.

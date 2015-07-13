@@ -31,5 +31,5 @@
   tags: packages
 
 - name: Make sure ntp is running
-  service: name=ntp state=present enabled=yes
+  service: name=ntp state=started enabled=yes
   tags: service

@@ -12,5 +12,5 @@
         (applicationfilepermresult is defined and applicationfilepermresult.changed)
   notify:
     - Supervisor reread
-    - Supervisor restart
+    - Restart Supervisor programms
   changed_when: true

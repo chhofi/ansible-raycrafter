@@ -8,7 +8,8 @@
 
 - name: Add {{ application_name }} to supervisor
   set_fact: "{{ supervisor_restart_programms}} + [{{ application_name }}]"
-  when: applicationconfigfileresult.changed or applicationfilepermresult.changed
+  when: (applicationconfigfileresult is defined and applicationconfigfileresult.changed) or
+        (applicationfilepermresult is defined and applicationfilepermresult.changed)
   notify:
     - Supervisor reread
     - Supervisor restart

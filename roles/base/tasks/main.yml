@@ -24,7 +24,7 @@
     - python-dev
     - python-pip
     - python-pycurl
-    - {{ language_pack}}
+    - '{{ language_pack}}'
   tags: packages
 
 - name: Install virtualenv

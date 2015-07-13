@@ -67,9 +67,6 @@ graylog_is_master: 'true'
 graylog_root_email: ''
 graylog_root_timezone: '{{ timezone }}'
 
-
-graylog_elasticsearch_transport_tcp_port: 9350
-
 # Rest
 graylog_rest_host: '127.0.0.1'
 graylog_rest_port: '12900'
@@ -171,6 +168,7 @@ nginx_sites:
     - listen {{ansible_eth1.ipv4.address}}:{{graylog_web_port}}
     - server_name {{ nginx_server_name }}
     - ssl on
+    - error_page 497 https://$host:$server_port$request_uri
     - location / {
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
           proxy_set_header X-Forwarded-Proto https;

@@ -5,6 +5,10 @@ application_name: "{{ project_name}}"
 timezone: Europe/Berlin
 language_pack: language-pack-de
 
+# java -------------------------------------------------------------------------
+java_packages:
+  - oracle-java8-installer
+
 # web --------------------------------------------------------------------------
 git_repo: https://github.com/RayCrafter/djangotest.git
 git_branch: develop
@@ -68,7 +72,7 @@ graylog_root_email: ''
 graylog_root_timezone: '{{ timezone }}'
 
 # Rest
-graylog_rest_host: '{{ ansible_eth0.ipv4.address }}'
+graylog_rest_host: '127.0.0.1'
 graylog_rest_port: '12900'
 graylog_rest_adress: '{{graylog_rest_host}}:{{graylog_rest_port}}'
 graylog_web_server_uri: 'http://{{ graylog_rest_adress }}'
@@ -120,7 +124,7 @@ nginx_http_params:
   - access_log syslog:server={{nginx_graylog_access_input_address}} graylog2_format
   - error_log syslog:server={{nginx_graylog_error_input_address}}
 
-nginx_configs: 
+nginx_configs:
   ssl:
     - ssl_certificate_key {{ ssl_certs_privkey_path }}
     - ssl_certificate     {{ ssl_certs_cert_path }}

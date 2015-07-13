@@ -5,6 +5,10 @@ application_name: "{{ project_name}}"
 timezone: Europe/Berlin
 language_pack: language-pack-de
 
+# java -------------------------------------------------------------------------
+java_packages:
+  - oracle-java8-installer
+
 # web --------------------------------------------------------------------------
 git_repo: https://github.com/RayCrafter/djangotest.git
 git_branch: master

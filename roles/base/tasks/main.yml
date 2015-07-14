@@ -4,8 +4,11 @@
   when: create_swap_file
   tags: swap
 
+- name: Update apt
+  apt: update_cache={{ update_apt_cache }}
+
 - name: Ensure bash, OpenSSl, and libssl are the latest versions
-  apt: name={{ item }} update_cache={{ update_apt_cache }} state=latest
+  apt: name={{ item }} state=latest
   with_items:
     - bash
     - openssl
@@ -14,7 +17,7 @@
   tags: packages
 
 - name: Install base packages
-  apt: name={{ item }} update_cache={{ update_apt_cache }} force=yes state=installed
+  apt: name={{ item }} force=yes state=installed
   with_items:
     - build-essential
     - ntp

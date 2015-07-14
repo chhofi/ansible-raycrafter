@@ -3,6 +3,7 @@
 project_name: djangotest
 application_name: "{{ project_name}}"
 timezone: Europe/Berlin
+language_pack: language-pack-de
 
 # web --------------------------------------------------------------------------
 git_repo: https://github.com/RayCrafter/djangotest.git
@@ -67,7 +68,7 @@ graylog_root_email: ''
 graylog_root_timezone: '{{ timezone }}'
 
 # Rest
-graylog_rest_host: '{{ ansible_eth0.ipv4.address }}'
+graylog_rest_host: '127.0.0.1'
 graylog_rest_port: '12900'
 graylog_rest_adress: '{{graylog_rest_host}}:{{graylog_rest_port}}'
 graylog_web_server_uri: 'http://{{ graylog_rest_adress }}'
@@ -119,7 +120,7 @@ nginx_http_params:
   - access_log syslog:server={{nginx_graylog_access_input_address}} graylog2_format
   - error_log syslog:server={{nginx_graylog_error_input_address}}
 
-nginx_configs: 
+nginx_configs:
   ssl:
     - ssl_certificate_key {{ ssl_certs_privkey_path }}
     - ssl_certificate     {{ ssl_certs_cert_path }}
@@ -167,6 +168,7 @@ nginx_sites:
     - listen {{ansible_eth0.ipv4.address}}:{{graylog_web_port}}
     - server_name {{ nginx_server_name }}
     - ssl on
+    - error_page 497 https://$host:$server_port$request_uri
     - location / {
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
           proxy_set_header X-Forwarded-Proto https;
@@ -177,6 +179,15 @@ nginx_sites:
 # elasticsearch ----------------------------------------------------------------
 elasticsearch_timezone: '{{ timezone }}'
 elasticsearch_version: '1.6'
+elasticsearch_discovery_zen_ping_unicast_hosts: '127.0.0.1:9300'
+elasticsearch_cluster_name: 'graylog2'
+elasticsearch_network_host: ''
+elasticsearch_network_bind_host: ''
+elasticsearch_network_publish_host: ''
+elasticsearch_index_number_of_shards: '4'
+elasticsearch_index_number_of_replicas: '0'
+elasticsearch_gateway_recover_after_nodes: '1'
+elasticsearch_gateway_expected_nodes: '1'
 
 # celery -----------------------------------------------------------------------
 celery_num_workers: 2

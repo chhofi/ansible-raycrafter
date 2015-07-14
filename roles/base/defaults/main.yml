@@ -2,6 +2,8 @@
 
 update_apt_cache: true
 
+language_pack: language-pack-en
+
 create_swap_file: no
 swap_file_path: /swapfile
 swap_file_size_kb: 512

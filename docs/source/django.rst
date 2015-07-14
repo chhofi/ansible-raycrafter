@@ -6,7 +6,7 @@ Django
 
 You can use any django project you want but you might have to configure some things.
 The best way to start is to use the Cookiecutter-Django_ template. It will create the
-whole project skeleton for you and is ready to use with this project.
+whole project skeleton for you and is ready to use with this project. This repository is using a `test django project <https://github.com/RayCrafter/djangotest>`_, which was created with Cookiecutter-Django_.
 
 Note that the default values in the playbooks assume that your project structure looks something like this::
 
@@ -33,11 +33,14 @@ Note that the default values in the playbooks assume that your project structure
   ├── README.md
   └── requirements.txt
 
-The main things to note are the locations of the ``manage.py``, ``wsgi.py`` and ``celery.py`` files.  If your project's structure is a little different, you may need to change the values in these 3 files:
+The main things to note are the locations of the ``manage.py``, ``wsgi.py`` files.  If your project's structure is a little different, you may need to change the values in these 2 varibales:
 
-- ``roles/web/tasks/setup_django_app.yml``
-- ``roles/web/templates/gunicorn_start.j2``
-- ``roles/celery/templates/celery_start.j2``
+- ``django_settings_file``: Default ``"config.settings.production"``
+- ``django_wsgi_file``: Default ``config.wsgi``
+
+For Celery_ it is expected that the app is ``{{ application_name }}``. You should import the celery app in ``myproject/myproject/__init__.py``. See the `Celery documentation <Celerydocumentation_>`_.
+
+Alternativly change the contents of ``roles/celery/templates/celery_start.j2``.
 
 Also, if your app needs additional system packages installed, you can add them in ``roles/web/tasks/install_additional_packages.yml``.
 
@@ -94,3 +97,5 @@ Here is a sample from the test project::
 .. _django-environ: https://github.com/joke2k/django-environ
 .. _12-Factor: http://12factor.net/
 .. _Cookiecutter-Django: https://github.com/RayCrafter/cookiecutter-django
+.. _Celerydocumentation: http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html#using-celery-with-django
+.. _Celery: http://www.celeryproject.org/

@@ -39,6 +39,7 @@ rabbitmq_application_user: "{{ application_name }}"
 
 # Django settings
 django_settings_file: "config.settings.production"
+django_wsgi_file: config.wsgi
 django_run_syncdb: false
 django_run_db_migrations: yes
 django_run_collectstatic: yes

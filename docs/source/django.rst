@@ -33,14 +33,13 @@ Note that the default values in the playbooks assume that your project structure
   ├── README.md
   └── requirements.txt
 
-The main things to note are the locations of the ``manage.py``, ``wsgi.py`` files.  If your project's structure is a little different, you may need to change the values in these 2 varibales:
+The main things to note are the locations of the ``manage.py``, ``wsgi.py`` files and the celery app.  If your project's structure is a little different, you may need to change the values in these 3 varibales:
 
 - ``django_settings_file``: Default ``"config.settings.production"``
 - ``django_wsgi_file``: Default ``config.wsgi``
+- ``celery_worker_app``: Default ``{{ application_name }}`` (in this example myproject)
 
-For Celery_ it is expected that the app is ``{{ application_name }}``. You should import the celery app in ``myproject/myproject/__init__.py``. See the `Celery documentation <Celerydocumentation_>`_.
-
-Alternativly change the contents of ``roles/celery/templates/celery_start.j2``.
+For Celery_ it is expected that the app is ``{{ application_name }}``. You should import the celery app in ``myproject/myproject/__init__.py`` or change the ``celery_worker_app`` variable. See the `Celery documentation <Celerydocumentation_>`_.
 
 Also, if your app needs additional system packages installed, you can add them in ``roles/web/tasks/install_additional_packages.yml``.
 

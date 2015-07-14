@@ -69,3 +69,46 @@ On the compute nodes, a Python client is started. The client asks Django_ what j
 All logs are aggregated by a Graylog_ server. The Python client on the cluster inspects the logs of the renderer and sends them back.
 Graylog_ also has a web interface, where you can create metrics and dashboards to quickly inspect the status of the jobs and servers.
 Logs are processed and indexed by Elasticsearch_. MongoDB_ is used for some metadata by Graylog_.
+
+-------------------
+Usage in Production
+-------------------
+
+There are some important things to note and do before using this project in production.
+The current development status is more of a proove of concept.
+
+++++++++
+Security
+++++++++
+
+**The current setup is insecure!** I'm not a security expert. Let a professional check your setup. Submit improvements via pull requests or issues for extra kudos.
+
+Some hints for where to look:
+
+- All default passwords and keys should be changed and encrypted!
+- Make sure that your firewall limits access. Especially to your logging inputs!
+  There is no authentication for these inputs right now.
+- Check Nginx_ ssl settings. Use TLS and strong cipher suites.
+- Check that no unnecessary ports are available to the public.
+- Use encryption for all communications with the outside world.
+  For now Graylog_ UDP inputs are not encrypted!
+- Check how your passwords are stored in Django_ and in the Graylog_ database.
+  Use strong salt and slow hash algorithms.
+
++++++++++++
+Performance
++++++++++++
+
+The server might get very slow. A lot of the software is meant be used in distributed systems.
+A single machine might not be able to handle the workload. Especially the logging server might need a lot of conifguration and might need to be distributed.
+
+Nginx_ and Gunicorn_ settings are important for the performance of the website and REST API.
+The default settings are not optimal.
+
+Check the Celery_ worker amount and settings. You might need more of them.
+
++++++++++++
+Reliability
++++++++++++
+
+Some services are not yet monitored by Supervisor_. Also you can configure more programms to log to the logging server.

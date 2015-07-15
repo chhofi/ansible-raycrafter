@@ -6,6 +6,7 @@
 
 - name: Update apt
   apt: update_cache={{ update_apt_cache }}
+  tags: packages
 
 - name: Ensure bash, OpenSSl, and libssl are the latest versions
   apt: name={{ item }} state=latest

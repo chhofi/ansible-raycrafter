@@ -39,5 +39,4 @@ Name                  Description
 celery                Tag for all tasks
 supervisor            All supervisor related tasks, like copying the config or
                       restarting the app
-
 ===================== ==========================================================================

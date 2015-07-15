@@ -6,7 +6,9 @@
     - postgresql
     - postgresql-contrib
     - python-psycopg2
-  tags: packages
+  tags: 
+    - packages
+    - postgres
 
 - name: Ensure the PostgreSQL service is running
   service: name=postgresql state=started enabled=yes

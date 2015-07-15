@@ -28,7 +28,7 @@ celery_worker_app        {{ application_name }}                                 
 celery_log_dir           {{ virtualenv_path }}/logs                              Dir for the log files
 celery_log_file          {{ celery_log_dir }}/{{ celery_application_name }}.log  Full path to the log files
 celery_num_workers       2                                                       Starts this many workers
-======================== ======================================================= =================================================
+======================== ======================================================= ==================================================
 
 ----
 Tags

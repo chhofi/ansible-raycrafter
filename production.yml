@@ -5,15 +5,19 @@
   sudo: yes
   sudo_user: root
   remote_user: david
-  vars:
-    - setup_git_repo: yes
-    - update_apt_cache: yes
   vars_files:
-    - env_vars/base.yml
-    - env_vars/dev.yml
+    - env_vars/secret.yml
+    - env_vars/production.yml
 
   roles:
     - base
+    - supervisor
+    - jdauphant.ssl-certs
+    - jdauphant.nginx
+    - f500.elasticsearch
+    - graylog2.graylog
+    - graylogfix
+    - graylog
     - db
     - rabbitmq
     - web

@@ -4,8 +4,12 @@
   when: create_swap_file
   tags: swap
 
+- name: Update apt
+  apt: update_cache={{ update_apt_cache }}
+  tags: packages
+
 - name: Ensure bash, OpenSSl, and libssl are the latest versions
-  apt: name={{ item }} update_cache={{ update_apt_cache }} state=latest
+  apt: name={{ item }} state=latest
   with_items:
     - bash
     - openssl
@@ -14,7 +18,7 @@
   tags: packages
 
 - name: Install base packages
-  apt: name={{ item }} update_cache={{ update_apt_cache }} force=yes state=installed
+  apt: name={{ item }} force=yes state=installed
   with_items:
     - build-essential
     - ntp
@@ -24,9 +28,13 @@
     - python-dev
     - python-pip
     - python-pycurl
-    - supervisor
+    - '{{ language_pack}}'
   tags: packages
 
 - name: Install virtualenv
   pip: name=virtualenv
   tags: packages
+
+- name: Make sure ntp is running
+  service: name=ntp state=started enabled=yes
+  tags: service

@@ -2,7 +2,7 @@
 
 - name: Install Memcached
   apt: name=memcached update_cache={{ update_apt_cache }} state=installed
-  tags: packages
+  tags: [packages,memcached]
 
 - name: Create the Memcached configuration file
   template: src=memcached.conf.j2
@@ -11,6 +11,10 @@
             backup=yes
   notify:
     - restart memcached
+  tags: memcached
 
 - name: Ensure the Memcached service is running
   service: name=memcached state=started enabled=yes
+  tags: 
+    - memcached
+    - service

@@ -35,4 +35,6 @@ exec gunicorn \
     --user $USER --group $GROUP \
     --log-level info \
     --bind unix:$SOCKFILE \
-    config.wsgi
+    --log-syslog-to udp://localhost:12303 \
+    --log-syslog \
+    {{ django_wsgi_file }}

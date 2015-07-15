@@ -9,9 +9,11 @@
   register: supervisor_applications
   tags:
     - celery
+    - supervisor
 
 - name: Restart the {{ celery_application_name }} app
   set_fact: "{{ supervisor_restart_programms}} + [{{ celery_application_name }}]"
   when: supervisor_applications.stdout.find('{{ celery_application_name }}') != -1
   tags:
     - celery
+    - supervisor

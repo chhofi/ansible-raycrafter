@@ -2,8 +2,8 @@
 ansible-django-stack
 ====================
 
-.. image:: https://readthedocs.org/projects/ansible-django-stack/badge/?version=latest&style=flat
-    :target: http://ansible-django-stack.readthedocs.org/en/latest/
+.. image:: https://readthedocs.org/projects/ansible-django-stack/badge/?version=stable&style=flat
+    :target: http://ansible-django-stack.readthedocs.org/en/stable/
     :alt: Documentation
 
 Ansible_ Playbook designed for running a Raycrafter_ Master Server.

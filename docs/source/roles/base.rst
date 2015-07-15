@@ -33,11 +33,23 @@ Variables
 ===================== ======================= ==================================================
 Name                  Default                 Description
 ===================== ======================= ==================================================
-update_apt_cache      true                    Update the apt cache before installing packages.
-language_pack         language-pack-en        The language-pack package name to install.
 create_swap_file      no                      If true/yes, creates a swap file.
+language_pack         language-pack-en        The language-pack package name to install.
 swap_file_path        /swapfile               Path to the swapfile.
 swap_file_size_kb     512                     Note that block size is 1024, so the size of the
                                               size of the swap file will be
                                               1024 x ``swap_file_size_kb``.
+update_apt_cache      true                    Update the apt cache before installing packages.
 ===================== ======================= ==================================================
+
+
+----
+Tags
+----
+===================== ==========================================================================
+Name                  Description
+===================== ==========================================================================
+packages              Install base packages and virutalenv
+service               Make sure ntp is running
+swap                  Creates the swap file
+===================== ==========================================================================

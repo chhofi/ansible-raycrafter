@@ -18,3 +18,13 @@ rabbitmq_application_vhost     rabbitmqvshost
 rabbitmq_application_user      rabbitmq
 rabbitmq_application_password  password
 ============================== ========================== ==================================================
+
+----
+Tags
+----
+===================== ==========================================================================
+Name                  Description
+===================== ==========================================================================
+packages              Install the RabbitMQ package
+service               Ensure RabbtiMQ is running
+===================== ==========================================================================

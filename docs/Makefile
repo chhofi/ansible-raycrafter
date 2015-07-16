@@ -87,9 +87,9 @@ qthelp:
 	@echo
 	@echo "Build finished; now you can run "qcollectiongenerator" with the" \
 	      ".qhcp project file in $(BUILDDIR)/qthelp, like this:"
-	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/AnsibleDjangoStack.qhcp"
+	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/AnsibleRayCrafter.qhcp"
 	@echo "To view the help file:"
-	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/AnsibleDjangoStack.qhc"
+	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/AnsibleRayCrafter.qhc"
 
 applehelp:
 	$(SPHINXBUILD) -b applehelp $(ALLSPHINXOPTS) $(BUILDDIR)/applehelp
@@ -104,8 +104,8 @@ devhelp:
 	@echo
 	@echo "Build finished."
 	@echo "To view the help file:"
-	@echo "# mkdir -p $$HOME/.local/share/devhelp/AnsibleDjangoStack"
-	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/AnsibleDjangoStack"
+	@echo "# mkdir -p $$HOME/.local/share/devhelp/AnsibleRayCrafter"
+	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/AnsibleRayCrafter"
 	@echo "# devhelp"
 
 epub:

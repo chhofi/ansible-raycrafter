@@ -13,12 +13,12 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Ansible Django Stack'
+project = u'Ansible RayCrafter'
 copyright = u'2015, David Zuber'
 author = u'David Zuber'
 
-version = '1.1.0'
-release = '1.1.0'
+version = '2.1.0'
+release = '2.1.0'
 
 language = None
 
@@ -30,14 +30,14 @@ pygments_style = 'sphinx'
 html_theme = 'sphinx_rtd_theme'
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 html_static_path = ['_static']
-htmlhelp_basename = 'AnsibleDjangoStackdoc'
+htmlhelp_basename = 'AnsibleRayCrafterdoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
 latex_elements = {}
 
 latex_documents = [
-  (master_doc, 'AnsibleDjangoStack.tex', u'Ansible Django Stack Documentation',
+  (master_doc, 'AnsibleRayCrafter.tex', u'Ansible RayCrafter Documentation',
    u'David Zuber', 'manual'),
 ]
 

@@ -1,9 +1,9 @@
 ====================
-ansible-django-stack
+ansible-raycrafter
 ====================
 
-.. image:: https://readthedocs.org/projects/ansible-django-stack/badge/?version=stable&style=flat
-    :target: http://ansible-django-stack.readthedocs.org/en/stable/
+.. image:: https://readthedocs.org/projects/ansible-raycrafter/badge/?version=latest&style=flat
+    :target: http://ansible-raycrafter.readthedocs.org/en/latest/
     :alt: Documentation
 
 Ansible_ Playbook designed for running a Raycrafter_ Master Server.
@@ -31,6 +31,9 @@ Overview:
 - Graylog_ Server/Web Interface
 
 **Tested with OS:** Ubuntu 14.04 LTS x64
+
+This project started as a fork from https://github.com/jcalazan/ansible-django-stack but
+developed into something different. A lot of credit goes to Jonathan Calazan for his awesome project.
 
 ---------------
 Getting Started
@@ -103,7 +106,7 @@ Useful Links
 .. _Raycrafter: https://github.com/RayCrafter
 .. _Git: https://git-scm.com/
 .. _Django: https://www.djangoproject.com/
-.. _documentation: http://ansible-django-stack.readthedocs.org/en/latest/
+.. _documentation: http://ansible-raycrafter.readthedocs.org/en/latest/
 .. _Djangotest: https://github.com/RayCrafter/djangotest
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _Cookiecutter-Django: https://github.com/RayCrafter/cookiecutter-django

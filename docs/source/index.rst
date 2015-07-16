@@ -1,4 +1,4 @@
-Welcome to Ansible Django Stack's documentation!
+Welcome to Ansible RayCrafter's documentation!
 ================================================
 
 Contents:

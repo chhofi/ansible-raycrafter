@@ -9,12 +9,18 @@
        extra_args="{{playbook_dir}}/downloads/"
   delegate_to: 127.0.0.1
   with_items: hlrsvenv_pypackages
+  tags:
+    - packages
 
 - name: Copy Downloads
   copy: src="{{playbook_dir}}/downloads/"
         dest="{{ansible_env.HOME}}/pypackages"
+  tags:
+    - packages
 
 - name: Install pip2pi
   pip: name="{{item}}" virtualenv="{{ansible_env.HOME}}/{{hlrsvenv_virtualenvpath}}/default"
        virtualenv_command=pyvenv extra_args="--no-index --find-links {{ansible_env.HOME}}/pypackages"
   with_items: hlrsvenv_pypackages
+  tags:
+    - packages

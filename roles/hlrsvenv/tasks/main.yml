@@ -1,2 +1,8 @@
 ---
 
+- name: Copy .profile script
+  template: src=profile.j2 dest='{{ansible_env.HOME}}/.profile'
+            backup=yes
+
+- name: Create default virtualenv
+  command: pyvenv "{{ansible_env.HOME}}/{{hlrsvenv_virtualenvpath}}/default" creates="{{ansible_env.HOME}}/{{hlrsvenv_virtualenvpath}}/default"

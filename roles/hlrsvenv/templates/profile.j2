@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+module load {{ hlrsvenv_pythonmodule }}
+if [ -f "$HOME/{{ hlrsvenv_virtualenvpath }}/default/bin/activate"]; then
+    . "$HOME/{{ hlrsvenv_virtualenvpath }}/default/bin/activate"
+fi

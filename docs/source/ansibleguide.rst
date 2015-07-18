@@ -4,16 +4,20 @@
 Ansible Guide
 =============
 
-First, create an inventory file for the environment. For a simple setup just put in the IPs of the machines to deploy. For example create a file ``hosts`` with the content::
+First, create an inventory file for the environment. There are two categories: ``masterservers`` and ``hlrs``. The first category will deploy a RayCrafter Master Server. The second will setup everything at the cluster.
+
+For example create a file ``hosts`` with the content::
 
   # content of hosts inventory file
-  # just a list of IPs
-  # You can categorize them for more complex setups.
+  [masterservers]
   141.62.110.220
+  
+  [hlrs]
+  hornet.hww.de
 
-Run the production playbook ``production.yml``::
+Run the main playbook ``sites.yml``, which includes the production and hlrs playbook::
 
-  $ ansible-playbook -i hosts production.yml
+  $ ansible-playbook -i hosts sites.yml
 
 If you're testing with vagrant, and the VM is already running, you can use this command::
 

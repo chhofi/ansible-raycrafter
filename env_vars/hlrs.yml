@@ -1,1 +1,4 @@
 ---
+
+hlrsvenv_pypackages:
+  - clusterclienttest

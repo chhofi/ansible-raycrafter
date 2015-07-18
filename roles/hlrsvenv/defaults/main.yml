@@ -1,3 +1,8 @@
-hlrsvenv_pythonversion = 3.4.1
-hlrsvenv_pythonmodule = tools/python/{{ hlrsvenv_pythonversion }}
-hlrsvenv_virtualenvpath = .virtualenv
+---
+
+hlrsvenv_localpip3: pip3
+hlrsvenv_pypackages:
+  - clusterclienttest
+hlrsvenv_pythonversion: 3.4.1
+hlrsvenv_pythonmodule: tools/python/{{ hlrsvenv_pythonversion }}
+hlrsvenv_virtualenvpath: .virtualenv

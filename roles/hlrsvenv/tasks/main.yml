@@ -1,7 +1,7 @@
 ---
 
-- name: Copy .profile script
-  template: src=profile.j2 dest='{{ansible_env.HOME}}/.profile'
+- name: Copy .bashrc script
+  template: src=bashrc.j2 dest='{{ansible_env.HOME}}/.bashrc'
             backup=yes
 
 - name: Download Python packages locally

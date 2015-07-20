@@ -1,10 +1,9 @@
 ---
 
 - name: Deploy {{ application_name }}
-  hosts: all
+  hosts: masterservers
   sudo: yes
   sudo_user: root
-  remote_user: david
   vars_files:
     - env_vars/secret.yml
     - env_vars/production.yml

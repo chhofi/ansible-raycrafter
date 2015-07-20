@@ -18,7 +18,7 @@
   tags:
     - packages
 
-- name: Install pip2pi
+- name: Install pypackages
   pip: name="{{item}}" virtualenv="{{ansible_env.HOME}}/{{hlrsvenv_virtualenvpath}}/default"
        virtualenv_command=pyvenv extra_args="--no-index --find-links {{ansible_env.HOME}}/pypackages"
   with_items: hlrsvenv_pypackages

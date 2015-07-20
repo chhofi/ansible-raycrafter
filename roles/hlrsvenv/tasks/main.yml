@@ -6,7 +6,7 @@
 
 - name: Download Python packages locally
   pip: name="{{item}}" executable="{{hlrsvenv_localpip3}}"
-       extra_args="{{playbook_dir}}/downloads/"
+       extra_args="--download {{playbook_dir}}/downloads/"
   delegate_to: 127.0.0.1
   with_items: hlrsvenv_pypackages
   tags:

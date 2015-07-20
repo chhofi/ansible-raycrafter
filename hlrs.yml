@@ -3,7 +3,6 @@
 - name: Setup raycrafter at the HLRS
   hosts: hlrs
   sudo: no
-  remote_user: hpcmscdz
   vars_files:
     - env_vars/hlrs.yml
 

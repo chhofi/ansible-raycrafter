@@ -1,5 +1,5 @@
 [masterservers]
-141.62.110.220
+141.62.110.220  ansible_ssh_user=david
 
 [hlrs]
-hornet.hww.de
+hornet.hww.de ansible_ssh_user=hpcmscdz

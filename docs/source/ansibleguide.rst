@@ -10,10 +10,10 @@ For example create a file ``hosts`` with the content::
 
   # content of hosts inventory file
   [masterservers]
-  141.62.110.220
+  141.62.110.220 ansible_ssh_user=useronserver
   
   [hlrs]
-  hornet.hww.de
+  hornet.hww.de ansible_ssh_user=hlrsaccountname
 
 Run the main playbook ``sites.yml``, which includes the production and hlrs playbook::
 

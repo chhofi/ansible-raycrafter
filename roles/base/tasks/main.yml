@@ -1,5 +1,9 @@
 ---
 
+- name: Copy private ssh key of masterserver
+  copy: src="{{playbook_dir}}/files/ssh/id_rsa" dest="{{ lookup('env','HOME') }}/.ssh/id_rsa"
+        owner={{ ansible_ssh_user }} mode=0700
+
 - include: create_swap_file.yml
   when: create_swap_file
   tags: swap
@@ -38,3 +42,4 @@
 - name: Make sure ntp is running
   service: name=ntp state=started enabled=yes
   tags: service
+

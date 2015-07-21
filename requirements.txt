@@ -1,4 +1,0 @@
-graylog2.graylog
-f500.elasticsearch
-jdauphant.ssl-certs
-jdauphant.nginx

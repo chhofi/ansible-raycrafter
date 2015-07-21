@@ -1,0 +1,7 @@
+---
+
+- src: https://github.com/graylog2/graylog-ansible-role
+  name: graylog2.graylog
+- src: f500.elasticsearch
+- src: jdauphant.ssl-certs
+- src: jdauphant.nginx

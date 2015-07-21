@@ -1,0 +1,10 @@
+---
+
+- name: Setup raycrafter at the HLRS
+  hosts: hlrs
+  sudo: no
+  vars_files:
+    - env_vars/hlrs.yml
+
+  roles:
+    - hlrsvenv

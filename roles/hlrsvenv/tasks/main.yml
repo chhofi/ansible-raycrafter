@@ -1,0 +1,30 @@
+---
+
+- name: Add public ssh key of masterserver
+  authorized_key: user={{ ansible_ssh_user }}
+                  key="{{ lookup('file', playbook_dir + '/files/ssh/id_rsa.pub') }}"
+
+- name: Copy .bashrc script
+  template: src=bashrc.j2 dest='{{ansible_env.HOME}}/.bashrc'
+            backup=yes
+
+- name: Download Python packages locally
+  pip: name="{{item}}" executable="{{hlrsvenv_localpip3}}"
+       extra_args="--download {{playbook_dir}}/downloads/"
+  delegate_to: 127.0.0.1
+  with_items: hlrsvenv_pypackages
+  tags:
+    - packages
+
+- name: Copy Downloads
+  copy: src="{{playbook_dir}}/downloads/"
+        dest="{{ansible_env.HOME}}/pypackages"
+  tags:
+    - packages
+
+- name: Install pypackages
+  pip: name="{{item}}" virtualenv="{{ansible_env.HOME}}/{{hlrsvenv_virtualenvpath}}/default"
+       virtualenv_command=pyvenv extra_args="--no-index --find-links {{ansible_env.HOME}}/pypackages"
+  with_items: hlrsvenv_pypackages
+  tags:
+    - packages

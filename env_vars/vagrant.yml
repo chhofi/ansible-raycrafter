@@ -94,6 +94,9 @@ graylog_packages_url_fixed: https://packages.graylog2.org/repo/packages/graylog-
 # ssl-cert ---------------------------------------------------------------------
 ssl_certs_common_name: "{{ application_name }}"
 ssl_certs_local_privkey_path: "{{playbook_dir}}/files/ssl/application.key"
+ssl_encrypted_key_file: "{{ ssl_certs_privkey_path}}"
+ssl_decrypted_key_file: "{{ssl_certs_patch}}/{{ssl_certs_common_name}}.key"
+ssl_certs_privkey_path: "{{ssl_certs_patch}}/{{ssl_certs_common_name}}.key_encrypted"
 ssl_certs_local_cert_path: "{{playbook_dir}}/files/ssl/application.pem"
 ssl_certs_country: "DE"
 ssl_certs_locality: "Stuttgart"
@@ -122,7 +125,7 @@ nginx_http_params:
 
 nginx_configs:
   ssl:
-    - ssl_certificate_key {{ ssl_certs_privkey_path }}
+    - ssl_certificate_key {{ ssl_decrypted_key_file }}
     - ssl_certificate     {{ ssl_certs_cert_path }}
   upstream:
     - "upstream wsgi_server { server unix:{{ virtualenv_path }}/run/gunicorn.sock fail_timeout=0; }"

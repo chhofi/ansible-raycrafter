@@ -1,0 +1,7 @@
+---
+
+- name: Decrypt SSL key
+  command: openssl aes-256-cbc -salt -a -d -in {{ ssl_encrypted_key_file }}
+           -out {{ ssl_decrypted_key_file }} -k {{ ssl_key_password }}
+           creates={{ ssl_decrypted_key_file }}
+  when: ssl_encrypted_key_file is defined

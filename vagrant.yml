@@ -16,7 +16,6 @@
     - jdauphant.nginx
     - f500.elasticsearch
     - graylog2.graylog
-    - graylogfix
     - db
     - rabbitmq
     - web

@@ -1,3 +1,0 @@
----
-dependencies:
-- { role: graylog2.graylog }

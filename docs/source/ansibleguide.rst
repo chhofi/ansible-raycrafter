@@ -4,6 +4,8 @@
 Ansible Guide
 =============
 
+Before you start, see the configuration section. There are some thing you need to setup first.
+
 First, create an inventory file for the environment. There are two categories: ``masterservers`` and ``hlrs``. The first category will deploy a RayCrafter Master Server. The second will setup everything at the cluster.
 
 For example create a file ``hosts`` with the content::
@@ -17,8 +19,8 @@ For example create a file ``hosts`` with the content::
 
 Run the main playbook ``sites.yml``, which includes the production and hlrs playbook::
 
-  $ ansible-playbook -i hosts sites.yml
+  $ ansible-playbook -i hosts sites.yml --ask-vault-pass
 
 If you're testing with vagrant, and the VM is already running, you can use this command::
 
-  $ ansible-playbook -i vagrant_ansible_inventory_default --private-key=~/.vagrant.d/insecure_private_key vagrant.yml
+  $ ansible-playbook -i vagrant_ansible_inventory_default --private-key=~/.vagrant.d/insecure_private_key vagrant.yml  --ask-vault-pass

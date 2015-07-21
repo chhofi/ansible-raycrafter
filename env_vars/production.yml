@@ -86,11 +86,6 @@ graylog_contentpacks:
   - "{{lookup('file', playbook_dir + '/files/contentpacks/django.json')}}"
   - "{{lookup('file', playbook_dir + '/files/contentpacks/gunicorn.json')}}"
 
-# graylogfix -------------------------------------------------------------------
-# Use the latest version. The current graylog2.graylog role is outdated and cannot
-# be overridden
-graylog_packages_url_fixed: https://packages.graylog2.org/repo/packages/graylog-1.1-repository-ubuntu14.04_latest.deb
-
 # ssl-cert ---------------------------------------------------------------------
 ssl_certs_common_name: "{{ application_name }}"
 ssl_certs_local_privkey_path: "{{playbook_dir}}/files/ssl/application.key"

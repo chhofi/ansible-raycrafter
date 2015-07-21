@@ -18,7 +18,7 @@ Install the software above.
 
 Install all ansible requirements. You might have to specify a path for the roles where you have permissions. You can use the example below. Make sure not to commit the downloaded roles.::
 
-  $ ansible-galaxy install -r requirements.txt -p ./roles
+  $ ansible-galaxy install -r requirements.yml -p ./roles
 
 +++++++++++++
 Configuration

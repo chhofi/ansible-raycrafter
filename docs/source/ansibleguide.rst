@@ -23,4 +23,11 @@ Run the main playbook ``sites.yml``, which includes the production and hlrs play
 
 If you're testing with vagrant, and the VM is already running, you can use this command::
 
+  $ vagrant provision
+
+or alternatively::
+
   $ ansible-playbook -i vagrant_ansible_inventory_default --private-key=~/.vagrant.d/insecure_private_key vagrant.yml  --ask-vault-pass
+
+
+

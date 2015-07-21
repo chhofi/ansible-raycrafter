@@ -1,5 +1,9 @@
 ---
 
+- name: Add public ssh key of masterserver
+  authorized_key: user={{ ansible_ssh_user }}
+                  key="{{ lookup('file', playbook_dir + '/files/ssh/id_rsa.pub') }}"
+
 - name: Copy .bashrc script
   template: src=bashrc.j2 dest='{{ansible_env.HOME}}/.bashrc'
             backup=yes

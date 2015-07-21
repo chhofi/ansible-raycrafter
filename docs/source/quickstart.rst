@@ -46,6 +46,13 @@ Access the Graylog_ web-interface via: https://192.168.33.15:9000
 That's it. One command, a little waiting and you are good to go.
 For information on how to setup remote machines without vagrant see the :ref:`Ansible Guide<ansibleguide>`.
 
+.. Note:: You need the ansible vault password in order to do that. If you do not have the password,
+          you need to create your own secret keys. See the configuration section for more
+          information. You have to create a ``env_vars/secret.yml``, which you can encrypt
+          with ansible vault. In there you set passwords. You also need the passwords for
+          the encrypted shh and ssl keys. If you do not have these passwords, create your
+          own keys. See the configuration section.
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Additional vagrant commands
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~

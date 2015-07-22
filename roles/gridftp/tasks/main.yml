@@ -1,0 +1,22 @@
+---
+
+- name: Install Globus GridFTP repo
+  apt_repository: repo="{{ gridftp_repo_url }}"
+                  state=present
+
+- name: Install Globus Package
+  apt: name=globus-data-management-client state=latest
+
+- name: Copy certificate
+  copy: src="{{gridftp_cert_file}}" dest="~/.globus/usercert.pem"
+
+- name: Copy key
+  copy: src="{{gridftp_key_file}}" dest="~/.globus/userkey.pem"n
+
+- name: Download CA package
+  get_url: url="{{gridftp_ca_package_url}}"
+           dest="~/.globus/certificates/globuscerts.tar.gz"
+
+- name: Unpack CA package
+  unarchive: copy=no src="~/.globus/certificates/globuscerts.tar.gz"
+             dest="~/.globus/certificates/"

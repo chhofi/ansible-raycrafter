@@ -21,3 +21,4 @@
     - web
     - celery
     - graylog
+    - gridftp

@@ -1,6 +1,6 @@
 ---
 
-gridftp_repo_url: "deb http://toolkit.globus.org/ftppub/gt6/stable/deb trusty contrib"
+gridftp_repo_url: "http://toolkit.globus.org/ftppub/gt6/installers/repo/globus-toolkit-repo_latest_all.deb"
 gridftp_package: "globus-data-management-client"
 gridftp_cert_file: "{{playbook_dir}}/files/ssl/gridftpcert.pem"
 gridftp_key_file: "{{playbook_dir}}/files/ssl/gridftpkey.pem"

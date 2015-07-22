@@ -1,8 +1,23 @@
 ---
 
+- name: Download Globus repo package
+  get_url: url="{{ gridftp_repo_url }}"
+           dest="/tmp/globusrepo.deb"
+  tags:
+    - gridftp
+    - packages
+
 - name: Install Globus GridFTP repo
-  apt_repository: repo="{{ gridftp_repo_url }}"
-                  state=present
+  command: dpkg -i /tmp/globusrepo.deb
+           creates=/etc/apt/sources.list.d/globus-toolkit-6-stable-trusty.list
+  register: globusrepo
+  tags:
+    - gridftp
+    - packages
+
+- name: Update apt
+  apt: update_cache=yes
+  when: globusrepo.changed
   tags:
     - gridftp
     - packages

@@ -3,5 +3,5 @@
 gridftp_repo_url: "deb http://toolkit.globus.org/ftppub/gt6/stable/deb trusty contrib"
 gridftp_package: "globus-data-management-client"
 gridftp_cert_file: "{{playbook_dir}}/files/ssl/gridftpcert.pem"
-gridftp_key_file: "{{playbook_dir}}/files/ssl/gridftpket.pem"
+gridftp_key_file: "{{playbook_dir}}/files/ssl/gridftpkey.pem"
 gridftp_ca_package_url: "http://winnetou.surfsara.nl/deisa/certs/globuscerts.tar.gz"

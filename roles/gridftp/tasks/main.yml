@@ -9,7 +9,7 @@
 
 - name: Install Globus GridFTP repo
   command: dpkg -i /tmp/globusrepo.deb
-           creates=/etc/apt/sources.list.d/globus-toolkit-6-stable-trusty.list
+           creates=/etc/apt/sources.list.d/{{ gridftp_repo_creates_file }}
   register: globusrepo
   tags:
     - gridftp

@@ -28,6 +28,12 @@ There are two sets of configurations: ``env_vars/vagrant.yml`` and ``env_vars/pr
 Here you configure your setup, like the location of your Git_ project, the project name, and application name which will be used throughout the Ansible_ configuration.
 For more information see :ref:`configuration`.
 
+.. Note:: The current configuration requires some important files like ssh keys and ssl
+          certificates. See :ref:`configuration` for more information. It will not work out of
+          the box. You also need the password for ansible-vault, because ``env_vars/secret.yml``
+          is encrypted. In the :ref:`configuration` section, you will find all necessary
+          information on how to create your own secret configuration file and how to encrypt it.
+
 I set some default values in ``env_vars`` based on a test project Djangotest_.
 If you want to create your own Django_ project I recommend to use the Cookiecutter_ template: Cookiecutter-Django_. It is supposed to work out of the box with this setup. For more specific information on how to setup your Django_ project see :ref:`django`.
 

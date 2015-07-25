@@ -49,6 +49,8 @@ Stack:
 .. _Django: https://www.djangoproject.com/
 .. _GridFTP: http://toolkit.globus.org/toolkit/docs/latest-stable/gridftp/
 
+.. _architecture:
+
 ------------
 Architecture
 ------------

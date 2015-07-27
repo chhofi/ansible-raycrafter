@@ -7,7 +7,8 @@ Dependencies:
 - web
 - supervisor
 
-Copies the startup and supervisor scripts.
+Copies the startup and supervisor scripts. Will start workers and celerycam.
+Celerycam is a monitoring service for celery workers and tasks.
 Create log dirs and files.
 Notifies supervisor to restart the celery app.
 

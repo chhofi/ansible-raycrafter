@@ -20,3 +20,4 @@
     - rabbitmq
     - web
     - celery
+    - gridftp

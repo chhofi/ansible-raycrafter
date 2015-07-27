@@ -9,6 +9,8 @@ It deploys a Django_ project and sets up Gunicorn_ and Nginx_ to serve your site
 PostgreSQL_ is used as database backend for Django_.
 Celery_ (with RabbitMQ_ as message broker) for asynchronous task queue/job queue.
 
+GridFTP_ is used for transferring files to/from the cluster.
+
 On top of that a logging server is deployed. In this case it is Graylog_, which depends
 on Elasticsearch_ and MongoDB_.
 
@@ -25,6 +27,7 @@ Stack:
 - Elasticsearch_
 - MongoDB_
 - Graylog_ Server/Web Interface
+- GridFTP_
 
 **Tested with OS:** Ubuntu 14.04 LTS x64
 
@@ -44,6 +47,9 @@ Stack:
 .. _Ansible: http://www.ansible.com/
 .. _Raycrafter: https://github.com/RayCrafter/
 .. _Django: https://www.djangoproject.com/
+.. _GridFTP: http://toolkit.globus.org/toolkit/docs/latest-stable/gridftp/
+
+.. _architecture:
 
 ------------
 Architecture
@@ -58,7 +64,7 @@ Django_ has most of the business logic on the server side. It is served with Gun
 You can add new jobs or query information via a REST API.
 
 When the user submits a new job to Django_, the job is stored in the PostgreSQL_ database. Because submitting jobs to the cluster takes long, the work is pushed to Celery_ workers.
-The workers ssh onto the cluster to submit jobs, or transfer input and output data.
+The workers ssh onto the cluster to submit jobs, or transfer input and output data. GridFTP_ is a secure, high-performance protocol, which can be used for data transfer.
 Django_ uses a message broker (RabbitMQ_) to send tasks to Celery_. The results of the tasks are stored in the database.
 
 Submitting a job to the cluster works by logging onto the cluster via ssh and executing the ``qsub`` command.

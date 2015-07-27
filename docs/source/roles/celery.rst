@@ -23,10 +23,13 @@ celery_group             {{ gunicorn_group }}                                   
 celery_application_name  celery                                                  The name off the celery programm
 celery_scripts_dir       {{ virtualenv_path }}/scripts/celery                    Path to the celery executable
 celery_template_file     {{ celery_application_name }}_start.j2                  The template to use for the start script
+celerycam_template_file: "celerycam_start.j2"                                    The template to use for celerycam. A monitor
+                                                                                 service.
 celery_worker_app        {{ application_name }}                                  The celery app name (used in the -A flag of the
                                                                                  celery executable)
 celery_log_dir           {{ virtualenv_path }}/logs                              Dir for the log files
-celery_log_file          {{ celery_log_dir }}/{{ celery_application_name }}.log  Full path to the log files
+celery_log_file          {{ celery_log_dir }}/{{ celery_application_name }}.log  Full path to the log file
+celerycam_log_file       "{{ celery_log_dir }}/celerycam.log"                    Full path to the celery cam log file
 celery_num_workers       2                                                       Starts this many workers
 ======================== ======================================================= ==================================================
 

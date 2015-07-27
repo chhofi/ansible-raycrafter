@@ -17,3 +17,12 @@
             mode=0755
   tags:
     - celery
+
+- name: Create the celerycam script file
+  template: src={{ celerycam_template_file }}
+            dest={{ celery_scripts_dir }}/celerycam_start
+            owner={{ celery_user }}
+            group={{ celery_group }}
+            mode=0755
+  tags:
+    - celery

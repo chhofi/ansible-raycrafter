@@ -1,8 +1,17 @@
 ---
 
 - name: Create the Supervisor config file for {{ celery_application_name }}
-  template: src=supervisor_{{ celery_application_name }}.conf.j2
+  template: src=supervisor_celery.conf.j2
             dest=/etc/supervisor/conf.d/{{ celery_application_name }}.conf
+  notify: Supervisor reread
+  notify: Supervisor update
+  tags:
+    - celery
+    - supervisor
+
+- name: Create the Supervisor file for celerycam
+  template: src=supervisor_celerycam.conf.j2
+            dest=/etc/supervisor/conf.d/celerycam.conf
   notify: Supervisor reread
   notify: Supervisor update
   tags:

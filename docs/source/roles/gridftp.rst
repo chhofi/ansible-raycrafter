@@ -11,6 +11,7 @@ Variables
 ========================= ========================================================================================= ==================================================
 Name                      Default                                                                                   Description
 ========================= ========================================================================================= ==================================================
+gridftp_user              "gridftp"                                                                                 The user that uses gridftp
 gridftp_repo_url          "http://toolkit.globus.org/ftppub/gt6/installers/repo/globus-toolkit-repo_latest_all.deb" Argument for adding the globus apt repository
 gridftp_package           "globus-data-management-client"                                                           The name of the package to install for the
                                                                                                                     gridftp client.

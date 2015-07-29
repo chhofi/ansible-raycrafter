@@ -1,5 +1,10 @@
 ---
 
+- name: Create the gridftp user
+  user: name={{ gridftp_user }} state=present
+  tags:
+    - gridftp
+
 - name: Download Globus repo package
   get_url: url="{{ gridftp_repo_url }}"
            dest="/tmp/globusrepo.deb"
@@ -31,14 +36,14 @@
 - name: Create globus config dir
   file: path="~/.globus" state=directory mode=0700
   become: yes
-  become_user: "{{ application_name}}"
+  become_user: "{{ gridftp_user }}"
   tags:
     - gridftp
 
 - name: Create globus certificate dir
   file: path="~/.globus/certificates" state=directory
   become: yes
-  become_user: "{{ application_name}}"
+  become_user: "{{ gridftp_user }}"
   tags:
     - gridftp
 
@@ -46,7 +51,7 @@
   copy: src="{{gridftp_cert_file}}" dest="~/.globus/usercert.pem"
         mode=0600
   become: yes
-  become_user: "{{ application_name}}"
+  become_user: "{{ gridftp_user }}"
   tags:
     - gridftp
 
@@ -54,7 +59,7 @@
   copy: src="{{gridftp_key_file}}" dest="~/.globus/userkey.pem"
         mode=0600
   become: yes
-  become_user: "{{ application_name}}"
+  become_user: "{{ gridftp_user }}"
   tags:
     - gridftp
 
@@ -62,7 +67,7 @@
   get_url: url="{{gridftp_ca_package_url}}"
            dest="~/.globus/certificates/globuscerts.tar.gz"
   become: yes
-  become_user: "{{ application_name}}"
+  become_user: "{{ gridftp_user }}"
   tags:
     - gridftp
 
@@ -70,6 +75,6 @@
   unarchive: copy=no src="~/.globus/certificates/globuscerts.tar.gz"
              dest="~/.globus/certificates/"
   become: yes
-  become_user: "{{ application_name}}"
+  become_user: "{{ gridftp_user }}"
   tags:
     - gridftp

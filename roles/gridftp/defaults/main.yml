@@ -1,5 +1,6 @@
 ---
 
+gridftp_user: "gridftp"
 gridftp_repo_url: "http://toolkit.globus.org/ftppub/gt6/installers/repo/globus-toolkit-repo_latest_all.deb"
 gridftp_package: "globus-data-management-client"
 gridftp_cert_file: "{{playbook_dir}}/files/ssl/usercert.pem"

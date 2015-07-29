@@ -189,3 +189,6 @@ elasticsearch_gateway_expected_nodes: '1'
 
 # celery -----------------------------------------------------------------------
 celery_num_workers: 2
+
+# gridftp ----------------------------------------------------------------------
+gridftp_user: '{{ gunicorn_user }}'

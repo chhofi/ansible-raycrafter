@@ -49,7 +49,8 @@ The contents of ``env_vars/secret.yml`` should be something like but with actual
 Files
 -----
 
-In order to use GridFTP, you need to have a X.509 certificate and key. See the `HLRS GridFTP Wiki <https://wickie.hlrs.de/platforms/index.php/Data_Transfer_with_GridFTP>`_. By default, you have to put them in ``/files/ssl/gridftpcert.pem`` and ``/files/ssl/gridftpkey.pem``.
+In order to use GridFTP, you need to have a X.509 certificate and key. See the `HLRS GridFTP Wiki <https://wickie.hlrs.de/platforms/index.php/Data_Transfer_with_GridFTP>`_. By default, you have to put them in ``/files/ssl/usercert.pem`` and ``/files/ssl/userkey.pem``.
+See :ref:`raycrafterdoc:gridftp`.
 
 There are some files that you might want to replace/encrypt, such as ssl/ssh keys.
 For ssl certificates, create/override ``/files/ssl/application.pem``, ``/files/ssl/application.key_unencrypted``. The key should be encryptes::

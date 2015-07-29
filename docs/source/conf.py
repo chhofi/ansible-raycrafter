@@ -42,4 +42,6 @@ latex_documents = [
 ]
 
 # -- Intersphinx Config ---------------------------------------------------
-intersphinx_mapping = {'https://docs.python.org/': None}
+intersphinx_mapping = {'python': ('https://docs.python.org/', None),
+                       'raycrafterdoc': ('http://raycrafter.readthedocs.org/en/master/', None),
+}

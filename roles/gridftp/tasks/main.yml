@@ -28,13 +28,18 @@
     - gridftp
     - packages
 
+- name: Create globus config dir
+  file: path="~/.globus" state=directory mode=0755
+
 - name: Copy certificate
   copy: src="{{gridftp_cert_file}}" dest="~/.globus/usercert.pem"
+        mode=0600
   tags:
     - gridftp
 
 - name: Copy key
-  copy: src="{{gridftp_key_file}}" dest="~/.globus/userkey.pem"n
+  copy: src="{{gridftp_key_file}}" dest="~/.globus/userkey.pem"
+        mode=0600
   tags:
     - gridftp
 

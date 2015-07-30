@@ -28,6 +28,7 @@
     - graylog2.graylog
     - db
     - rabbitmq
+    - gunicorn
     - web
     - celery
     - graylog

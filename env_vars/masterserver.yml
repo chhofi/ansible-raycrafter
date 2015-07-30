@@ -1,4 +1,13 @@
 ---
+
+# gunicorn ---------------------------------------------------------------------
+gunicorn_num_workers: 3
+gunicorn_timeout_seconds: 300
+gunicorn_workdir: "{{ project_path }}"
+gunicorn_wsgi_file: config.wsgi
+application_log_dir: "{{ virtualenv_path }}/logs"
+application_log_file: "{{ application_log_dir }}/gunicorn_supervisor.log"
+
 # graylog2.graylog -------------------------------------------------------------
 # Basic graylog server settings
 graylog_is_master: 'true'

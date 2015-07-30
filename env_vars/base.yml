@@ -15,8 +15,6 @@ setup_git_repo: true
 virtualenv_root: "/webapps"
 virtualenv_path: "{{ virtualenv_root }}/{{ application_name }}"
 project_path: "{{ virtualenv_path }}/{{ project_name }}"
-application_log_dir: "{{ virtualenv_path }}/logs"
-application_log_file: "{{ application_log_dir }}/gunicorn_supervisor.log"
 
 requirements_file: "{{ project_path }}/requirements.txt"
 
@@ -25,9 +23,6 @@ superuser_email: zuber.david@gmx.de
 
 db_user: "{{ application_name }}"
 db_name: "{{ application_name }}"
-
-# For the number of workers, a good rule to follow is 2 x number of CPUs + 1
-gunicorn_num_workers: 3
 
 # Nginx settings
 nginx_static_dir: "{{ virtualenv_path }}/static/"
@@ -41,7 +36,6 @@ rabbitmq_application_user: "{{ application_name }}"
 
 # Django settings
 django_settings_file: "config.settings.production"
-django_wsgi_file: config.wsgi
 django_run_syncdb: false
 django_run_db_migrations: yes
 django_run_collectstatic: yes

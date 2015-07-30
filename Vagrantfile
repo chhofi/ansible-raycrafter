@@ -32,7 +32,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       if index == inventory.size - 1
         cfg.vm.provision :ansible do |ansible|
           ansible.groups = groups
-          ansible.verbose = "vvvv"
+          ansible.verbose = "v"
           ansible.playbook = "vagrant.yml"
           ansible.limit = 'all'# "#{info[:ip]}" # Ansible hosts are identified by ip
           ansible.vault_password_file = "vaultpwfile.txt"

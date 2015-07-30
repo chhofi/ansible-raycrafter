@@ -49,28 +49,16 @@ The contents of ``env_vars/secret.yml`` should be something like but with actual
 Files
 -----
 
+There are some files that you have to create such as ssh/ssl keys.
+
+For ssl certificates, create/override ``/files/ssl/application.pem``, ``/files/ssl/application.key`` with your certificate and private key.
+
 In order to use GridFTP, you need to have a X.509 certificate and key. See the `HLRS GridFTP Wiki <https://wickie.hlrs.de/platforms/index.php/Data_Transfer_with_GridFTP>`_. By default, you have to put them in ``/files/ssl/usercert.pem`` and ``/files/ssl/userkey.pem``.
 See :ref:`raycrafterdoc:gridftp`.
-
-There are some files that you might want to replace/encrypt, such as ssl/ssh keys.
-For ssl certificates, create/override ``/files/ssl/application.pem``, ``/files/ssl/application.key_unencrypted``. The key should be encryptes::
-
-  $ openssl aes-256-cbc -salt -a -e -in files/ssl/application.key_unencrypted -out files/ssl/application.key -k "YourSSLKeyPassword"
-
-Do not commit the unencrypted version of the key!
 
 You should also create an ssh-key for the master server so he can access the cluster via ssh.
 Create a ssh keypair with::
 
   $ ssh-keygen -t rsa -b 4096 -C "raycrafter master server"
 
-Move them to ``/files/ssh/id_rsa_unencrypted`` and ``/files/ssh/id_rsa.pub``.
-Encrypt the key::
-
-    $ openssl aes-256-cbc -salt -a -e -in files/ssh/id_rsa_unencrypted -out files/ssh/id_rsa -k "YourSSHKeyPassword"
-
-Do not commit the unencrypted version of the key!
-
-Store the password in ``/env_vars/secret.yml`` as ``ssl_key_password`` and ``ssh_key_password``. Make sure you envrypt that file with ansible vault::
-
-  $ ansible-vault encrypt ./env_vars/secret.yml
+Move them to ``/files/ssh/id_rsa`` and ``/files/ssh/id_rsa.pub``.

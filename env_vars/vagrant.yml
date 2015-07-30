@@ -118,7 +118,7 @@ nginx_http_params:
 
 nginx_configs:
   ssl:
-    - ssl_certificate_key {{ ssl_decrypted_key_file }}
+    - ssl_certificate_key {{ ssl_certs_privkey_path }}
     - ssl_certificate     {{ ssl_certs_cert_path }}
   upstream:
     - "upstream wsgi_server { server unix:{{ virtualenv_path }}/run/gunicorn.sock fail_timeout=0; }"

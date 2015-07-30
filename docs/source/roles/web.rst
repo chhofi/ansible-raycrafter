@@ -4,7 +4,6 @@ Web
 
 Dependencies:
 
-- rabbitmq
 - supervisor
 
 Create user and usergroup for gunicorn.
@@ -60,7 +59,6 @@ django_secret_key          "akr2icmg1n8%z^3fe3c+)5d0(t^cy-2_25rrl35a7@!scna^1#" 
 django_run_syncdb          false                                                                                                                    Run syncdb command. For older django versions.
 django_run_db_migrations   yes                                                                                                                      Run migrate command. For django >= 1.7
 django_run_collectstatic   yes                                                                                                                      Run the collectstatic django command.
-django_broker_url          "amqp://{{ rabbitmq_application_user }}:{{ rabbitmq_application_password }}@localhost/{{ rabbitmq_application_vhost }}"  Url for the rabbitmq broker.
 django_email_host          ~                                                                                                                        Hostname of the email server
 django_email_port          1025                                                                                                                     Port of the email server
 django_email_host_user     ~                                                                                                                        Username for the email server

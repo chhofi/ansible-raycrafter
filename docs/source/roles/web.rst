@@ -45,12 +45,8 @@ superuser_password         password                                             
 db_user                    "{{ application_name }}"                                                                                                 The user for database access
 db_name                    "{{ application_name }}"                                                                                                 Name of the database
 db_password                password                                                                                                                 Password for accessing the database
-gunicorn_user              "{{ application_name }}"                                                                                                 Username for the user running gunicorn
-gunicorn_group             webapps                                                                                                                  Groupname for the gunicorn user
-gunicorn_num_workers       3                                                                                                                        Numer of gunicorn workers
-gunicorn_max_requests      0                                                                                                                        Maximum requests before gunicorn restarts. 0 for
-                                                                                                                                                    no limit.
-gunicorn_timeout_seconds   300                                                                                                                      Maximum timeout for requests.
+web_user                   "{{ application_name }}"                                                                                                 Username for the user running gunicorn
+web_group                  webapps                                                                                                                  Groupname for the gunicorn user
 nginx_static_dir           "{{ virtualenv_path }}/static/"                                                                                          Static files dir to be served via nginx
 nginx_media_dir            "{{ virtualenv_path }}/media/"                                                                                           Media files dir to be served via nginx
 django_settings_file       "config.settings.production"                                                                                             Path to the settings. Has to be importable.

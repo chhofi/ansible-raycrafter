@@ -3,7 +3,7 @@
 - name: Ensure that the application file permissions are set properly
   file: path={{ virtualenv_path }}
         recurse=yes
-        owner={{ gunicorn_user }}
-        group={{ gunicorn_group }}
+        owner={{ web_user }}
+        group={{ web_group }}
         state=directory
   register: applicationfilepermresult

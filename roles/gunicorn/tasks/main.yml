@@ -1,0 +1,11 @@
+---
+
+- include: create_users_and_groups
+
+- include: setup_virtualenv.yml
+  tags: virtualenv
+
+- include: setup_supervisor.yml
+  tags: supervisor
+
+- include: set_file_permissions.yml

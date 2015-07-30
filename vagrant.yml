@@ -1,5 +1,30 @@
 ---
 
+- name: Common base role
+  hosts: all
+  sudo: yes
+  sudo_user: root
+  remote_user: vagrant
+  vars_files:
+    - env_vars/secret.yml
+    - env_vars/vagrant.yml
+
+  roles:
+    - base
+
+#- name: Create a RayCrafter crafter node
+#  hosts: crafternodes
+#  sudo: yes
+#  sudo_user: root
+#  remote_user: vagrant
+#  vars_files:
+#    - env_vars/secret.yml
+#    - env_vars/vagrant.yml
+#
+#  roles:
+#    - base
+#
+
 - name: Create a RayCrafter master server
   hosts: masterservers
   sudo: yes
@@ -10,7 +35,6 @@
     - env_vars/vagrant.yml
 
   roles:
-    - base
     - supervisor
     - jdauphant.ssl-certs
     - jdauphant.nginx
@@ -23,16 +47,3 @@
     - graylog
     - gridftp
 
----
-
-- name: Create a RayCrafter crafter node
-  hosts: crafternodes
-  sudo: yes
-  sudo_user: root
-  remote_user: vagrant
-  vars_files:
-    - env_vars/secret.yml
-    - env_vars/vagrant.yml
-
-  roles:
-    - base

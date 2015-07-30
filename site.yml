@@ -32,6 +32,9 @@
     - web
     - graylog
 
+# Add masterservers to hosts but disable all roles
+# This is necessary for gathering facts
+# So we can set the right hostname for rabbitmq and the db
 - name: Create RayCrafter crafter node
   hosts: [crafternodes, masterservers]
   sudo: yes
@@ -44,7 +47,6 @@
   roles:
     - {role: supervisor, when: "'crafternodes' in group_names"}
     - {role: web, when: "'crafternodes' in group_names"}
-    - {role: celery, when: "'crafternodes' in group_names"}
     - {role: celery, when: "'crafternodes' in group_names"}
     - {role: graylog, when: "'crafternodes' in group_names"}
     - {role: gridftp, when: "'crafternodes' in groubp_names"}

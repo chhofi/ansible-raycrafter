@@ -1,7 +1,7 @@
 ---
 
-- name: Create a {{ application_name }} virtual machine via vagrant
-  hosts: all
+- name: Create a RayCrafter master server
+  hosts: masterservers
   sudo: yes
   sudo_user: root
   remote_user: vagrant
@@ -22,3 +22,17 @@
     - celery
     - graylog
     - gridftp
+
+---
+
+- name: Create a RayCrafter crafter node
+  hosts: crafternodes
+  sudo: yes
+  sudo_user: root
+  remote_user: vagrant
+  vars_files:
+    - env_vars/secret.yml
+    - env_vars/vagrant.yml
+
+  roles:
+    - base

@@ -1,0 +1,190 @@
+---
+# common -----------------------------------------------------------------------
+project_name: djangotest
+application_name: "{{ project_name}}"
+
+# web --------------------------------------------------------------------------
+git_repo: https://github.com/RayCrafter/djangotest.git
+git_branch: develop
+setup_git_repo: true
+
+virtualenv_root: "/webapps"
+virtualenv_path: "{{ virtualenv_root }}/{{ application_name }}"
+project_path: "{{ virtualenv_path }}/{{ project_name }}"
+application_log_dir: "{{ virtualenv_path }}/logs"
+application_log_file: "{{ application_log_dir }}/gunicorn_supervisor.log"
+
+requirements_file: "{{ project_path }}/requirements.txt"
+
+superuser_name: david
+superuser_email: zuber.david@gmx.de
+
+db_user: "{{ application_name }}"
+db_name: "{{ application_name }}"
+
+# For the number of workers, a good rule to follow is 2 x number of CPUs + 1
+gunicorn_num_workers: 3
+
+# Nginx settings
+nginx_static_dir: "{{ virtualenv_path }}/static/"
+nginx_media_dir: "{{ virtualenv_path }}/media/"
+
+# rabbitmq role settings
+rabbitmq_admin_user: admin
+rabbitmq_application_vhost: "{{ application_name }}"
+rabbitmq_application_user: "{{ application_name }}"
+
+# Django settings
+django_settings_file: "config.settings.production"
+django_wsgi_file: config.wsgi
+django_run_syncdb: false
+django_run_db_migrations: yes
+django_run_collectstatic: yes
+django_email_host: ~
+django_email_port: 1025
+django_email_host_user: ~
+django_broker_url: "amqp://{{ rabbitmq_application_user }}:{{ rabbitmq_application_password }}@localhost/{{ rabbitmq_application_vhost }}"
+
+# Django Environment variables
+django_environment:
+  DJANGO_SETTINGS_MODULE: "{{ django_settings_file }}"
+  DJANGO_SECRET_KEY: "{{ django_secret_key }}"
+  MEDIA_ROOT: "{{ nginx_media_dir }}"
+  STATIC_ROOT: "{{ nginx_static_dir }}"
+  DATABASE_URL: "postgres://{{ db_user }}:{{ db_password}}@127.0.0.1:5432/{{ db_name }}"
+  DJANGO_EMAIL_HOST: "{{ django_email_host|default(omit) }}"
+  EMAIL_PORT: "{{ django_email_port}}"
+  EMAIL_HOST_USER: "{{ django_email_host_user|default(omit) }}"
+  EMAIL_HOST_PASSWORD: "{{ django_email_host_password|default(omit) }}"
+  DJANGO_DEFAULT_FROM_EMAIL: "{{ application_name}} <noreply@{{ ansible_eth1.ipv4.address }}>"
+  BROKER_URL: "{{ django_broker_url|default(omit) }}"
+
+# graylog2.graylog -------------------------------------------------------------
+# Basic graylog server settings
+graylog_is_master: 'true'
+graylog_root_email: ''
+graylog_root_timezone: '{{ timezone }}'
+
+# Rest
+graylog_rest_host: '127.0.0.1'
+graylog_rest_port: '12900'
+graylog_rest_adress: '{{graylog_rest_host}}:{{graylog_rest_port}}'
+graylog_web_server_uri: 'http://{{ graylog_rest_adress }}'
+graylog_rest_listen_uri: 'http://{{ graylog_rest_adress }}/'
+graylog_rest_transport_uri: 'http://{{ graylog_rest_adress }}/'
+
+# Basic graylog web interface settings
+graylog_web_listen_address: '127.0.0.1'
+graylog_web_port: '9000'
+graylog_web_server_uri: '{{graylog_rest_listen_uri}}'
+graylog_web_timezone: '{{ timezone }}'
+
+graylog_contentpacks:
+  - "{{lookup('file', playbook_dir + '/files/contentpacks/nginx.json')}}"
+  - "{{lookup('file', playbook_dir + '/files/contentpacks/django.json')}}"
+  - "{{lookup('file', playbook_dir + '/files/contentpacks/gunicorn.json')}}"
+
+# ssl-cert ---------------------------------------------------------------------
+ssl_certs_common_name: "{{ application_name }}"
+ssl_certs_local_privkey_path: "{{playbook_dir}}/files/ssl/application.key"
+ssl_certs_privkey_path: "{{ssl_certs_patch}}/{{ssl_certs_common_name}}.key"
+ssl_certs_local_cert_path: "{{playbook_dir}}/files/ssl/application.pem"
+ssl_certs_country: "DE"
+ssl_certs_locality: "Stuttgart"
+ssl_certs_organization: "Hdm Stuttgart"
+ssl_certs_state: "BW"
+ssl_certs_generate_self_signed: true
+ssl_certs_key_size: "2048"
+
+# nginx ------------------------------------------------------------------------
+# When managing with supervisor, this should be off
+nginx_daemon_mode: "on"
+
+nginx_server_name: "{{ inventory_hostname }}"
+
+nginx_official_repo: true
+
+# logging settings
+nginx_graylog_access_input_address: '127.0.0.1:12301'
+nginx_graylog_error_input_address: '127.0.0.1:12302'
+
+nginx_http_params:
+  # log format for the nginx content pack for graylog.
+  - log_format  graylog2_format  '$remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" "$http_x_forwarded_for" <msec=$msec|connection=$connection|connection_requests=$connection_requests|millis=$request_time>'
+  - access_log syslog:server={{nginx_graylog_access_input_address}} graylog2_format
+  - error_log syslog:server={{nginx_graylog_error_input_address}}
+
+nginx_configs:
+  ssl:
+    - ssl_certificate_key {{ ssl_certs_privkey_path }}
+    - ssl_certificate     {{ ssl_certs_cert_path }}
+  upstream:
+    - "upstream wsgi_server { server unix:{{ virtualenv_path }}/run/gunicorn.sock fail_timeout=0; }"
+
+nginx_sites:
+  redirect:
+    - listen 80
+    - server_name {{ nginx_server_name }}
+    - return 301 https://$server_name$request_uri
+  application:
+    - listen 443
+    - server_name {{ nginx_server_name }}
+    - ssl on
+    - client_max_body_size 4G
+    - location /static/ {
+          alias   {{ nginx_static_dir }};
+      }
+    - location /media/ {
+          alias   {{ nginx_media_dir }};
+      }
+    - location / {
+          if (-f {{ virtualenv_path }}/maintenance_on.html) {
+              return 503;
+          }
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto https;
+          proxy_set_header Host $http_host;
+          proxy_redirect off;
+          if (!-f $request_filename) {
+              proxy_pass http://wsgi_server;
+              break;
+          }
+      }
+    - error_page 500 502 504 /500.html
+    - location = /500.html {
+          root {{ project_path }}/{{ application_name }}/templates/;
+      }
+    - error_page 503 /maintenance_on.html
+    - location = /maintenance_on.html {
+          root {{ virtualenv_path }}/;
+      }
+  graylog:
+    - listen {{ansible_eth1.ipv4.address}}:{{graylog_web_port}}
+    - server_name {{ nginx_server_name }}
+    - ssl on
+    - error_page 497 https://$host:$server_port$request_uri
+    - location / {
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto https;
+          proxy_set_header Host $http_host;
+          proxy_pass http://{{graylog_web_listen_address}}:{{graylog_web_port}};
+      }
+
+# elasticsearch ----------------------------------------------------------------
+elasticsearch_timezone: '{{ timezone }}'
+elasticsearch_version: '1.6'
+elasticsearch_discovery_zen_ping_unicast_hosts: '127.0.0.1:9300'
+elasticsearch_cluster_name: 'graylog2'
+elasticsearch_network_host: ''
+elasticsearch_network_bind_host: ''
+elasticsearch_network_publish_host: ''
+elasticsearch_index_number_of_shards: '4'
+elasticsearch_index_number_of_replicas: '0'
+elasticsearch_gateway_recover_after_nodes: '1'
+elasticsearch_gateway_expected_nodes: '1'
+
+# celery -----------------------------------------------------------------------
+celery_num_workers: 2
+
+# gridftp ----------------------------------------------------------------------
+gridftp_user: '{{ gunicorn_user }}'

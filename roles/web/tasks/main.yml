@@ -12,7 +12,4 @@
 
 - include: setup_django_app.yml
 
-- include: setup_supervisor.yml
-  tags: supervisor
-
 - include: set_file_permissions.yml

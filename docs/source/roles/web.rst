@@ -76,7 +76,4 @@ django_environment         | DJANGO_SETTINGS_MODULE: "{{ django_settings_file }}
                            | EMAIL_HOST_PASSWORD: "{{ django_email_host_password|default(omit) }}"
                            | DJANGO_DEFAULT_FROM_EMAIL: "{{ application_name}} <noreply@{{ ansible_eth0.ipv4.address }}>"
                            | BROKER_URL: "{{ django_broker_url|default(omit) }}"
-ssl_encrypted_key_file     not defined                                                                                                              Path on the remote to an encrypted ssl key
-ssl_decrypted_key_file     "etc/ssl/{{ansible_fqdn}}/{{ansible_fqdn}}.key"                                                                          Path on the remote for the decrypted ssl key
-ssl_key_password           password                                                                                                                 The password to decrypt the ssl key
 ========================== ======================================================================================================================== ==================================================

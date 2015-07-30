@@ -1,7 +1,5 @@
 ---
 
-- include: decrypt_certs.yml
-
 - include: create_users_and_groups.yml
 
 - include: setup_virtualenv.yml

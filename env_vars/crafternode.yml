@@ -1,1 +1,5 @@
 ---
+
+# web --------------------------------------------------------------------------
+rabbitmq_host: "{{ hostvars[groups['masterservers'][0]]['ansible_eth1']['ipv4']['address'] }}"
+db_host: "{{ hostvars[groups['masterservers'][0]]['ansible_eth1']['ipv4']['address'] }}"

@@ -34,18 +34,18 @@
     - gridftp
 
 - name: Create RayCrafter crafter node
-  hosts: crafternodes
+  hosts: [crafternodes, masterservers]
   sudo: yes
   sudo_user: root
   remote_user: vagrant
   vars_files:
     - env_vars/secret.yml
     - env_vars/base.yml
-    - env_vars/crafternodes.yml
+    - env_vars/crafternode.yml
   roles:
-    - supervisor
-    - web
-    - celery
+    - {role: supervisor, when: "'crafternodes' in group_names"}
+    - {role: web, when: "'crafternodes' in group_names"}
+    - {role: celery, when: "'crafternodes' in group_names"}
 
 - name: Setup raycrafter at the HLRS
   hosts: hlrs

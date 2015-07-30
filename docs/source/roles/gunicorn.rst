@@ -32,6 +32,7 @@ gunicorn_num_workers       3                                                    
 gunicorn_max_requests      0                                                                                                                        Maximum requests before gunicorn restarts. 0 for
                                                                                                                                                     no limit.
 gunicorn_timeout_seconds   30                                                                                                                       Maximum timeout for requests.
+gunicorn_workdir           /                                                                                                                        Workdir for executing gunicorn
 gunicorn_wsgi_file         ~                                                                                                                        Path to the wsgi file. Has to be importable.
 ========================== ======================================================================================================================== ==================================================
 

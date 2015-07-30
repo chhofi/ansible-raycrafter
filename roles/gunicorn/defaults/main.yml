@@ -16,4 +16,5 @@ gunicorn_log_level: info
 gunicorn_num_workers: 3
 gunicorn_max_requests: 0
 gunicorn_timeout_seconds: 30
+gunicorn_workdir: /
 gunicorn_wsgi_file: ~

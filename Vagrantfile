@@ -33,7 +33,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         cfg.vm.provision :ansible do |ansible|
           ansible.groups = groups
           ansible.verbose = "v"
-          ansible.playbook = "vagrant.yml"
+          ansible.playbook = "site.yml"
           ansible.limit = 'all'# "#{info[:ip]}" # Ansible hosts are identified by ip
           ansible.vault_password_file = "vaultpwfile.txt"
         end

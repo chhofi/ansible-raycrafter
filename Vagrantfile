@@ -34,6 +34,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           ansible.verbose = "v"
           ansible.playbook = "vagrant.yml"
           ansible.limit = 'all'# "#{info[:ip]}" # Ansible hosts are identified by ip
+          ansible.ask_vault_pass = true
         end
       end
     end

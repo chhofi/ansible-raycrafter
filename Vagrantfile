@@ -10,8 +10,8 @@ groups = {
 }
 
 inventory = {
-  "master" => {:ip => "192.168.33.15", :cpu => 2, :mem => 4096},
-  "crafter" => {:ip => "192.168.33.16", :cpu => 1, :mem => 1024},
+  "master" => {:ip => "192.168.33.15", :cpus => 2, :mem => 4096},
+  "crafter" => {:ip => "192.168.33.16", :cpus => 1, :mem => 1024},
 }
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|

@@ -30,9 +30,7 @@
     - rabbitmq
     - gunicorn
     - web
-    - celery
     - graylog
-    - gridftp
 
 - name: Create RayCrafter crafter node
   hosts: [crafternodes, masterservers]
@@ -47,6 +45,9 @@
     - {role: supervisor, when: "'crafternodes' in group_names"}
     - {role: web, when: "'crafternodes' in group_names"}
     - {role: celery, when: "'crafternodes' in group_names"}
+    - {role: celery, when: "'crafternodes' in group_names"}
+    - {role: graylog, when: "'crafternodes' in group_names"}
+    - {role: gridftp, when: "'crafternodes' in groubp_names"}
 
 - name: Setup raycrafter at the HLRS
   hosts: hlrs

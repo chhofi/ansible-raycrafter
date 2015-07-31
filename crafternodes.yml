@@ -1,0 +1,24 @@
+---
+
+# Add masterservers to hosts but disable all roles
+# This is necessary for gathering facts
+# So we can set the right hostname for rabbitmq and the db
+- name: Create RayCrafter crafter node
+  hosts: [crafternodes, masterservers]
+  sudo: yes
+  sudo_user: root
+  remote_user: vagrant
+  vars_files:
+    - env_vars/secret.yml
+    - env_vars/base.yml
+    - env_vars/crafternode.yml
+  roles:
+    - {role: supervisor, when: "'crafternodes' in group_names"}
+    - {role: web, when: "'crafternodes' in group_names"}
+    - {role: celery, when: "'crafternodes' in group_names"}
+    - {role: graylog, when: "'crafternodes' in group_names"}
+    - {role: gridftp, when: "'crafternodes' in group_names"}
+  tasks:
+    - name: Copy private ssh key of masterserver
+      copy: src="{{playbook_dir}}/files/ssh/id_rsa" dest="~/.ssh/id_rsa"
+            owner={{ ansible_ssh_user }} mode=0700

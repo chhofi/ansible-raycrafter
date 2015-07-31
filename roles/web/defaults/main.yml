@@ -8,8 +8,6 @@ application_name: "{{ project_name }}"
 virtualenv_root: "/webapps"
 virtualenv_path: "{{ virtualenv_root }}/{{ application_name }}"
 project_path: "{{ virtualenv_path }}/{{ project_name }}"
-application_log_dir: "{{ virtualenv_path }}/logs"
-application_log_file: "{{ application_log_dir }}/gunicorn_supervisor.log"
 requirements_file: "{{ project_path }}/requirements.txt"
 
 superuser_name: superuser
@@ -22,7 +20,6 @@ db_password: password
 
 web_user: "{{ application_name }}"
 web_group: webapps
-
 
 # Nginx settings
 nginx_static_dir: "{{ virtualenv_path }}/static/"

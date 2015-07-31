@@ -1,6 +1,6 @@
 ---
 
-- include: create_users_and_groups
+- include: create_users_and_groups.yml
   tags:
     - gunicorn
 - include: setup_virtualenv.yml

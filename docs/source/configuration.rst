@@ -14,7 +14,7 @@ In the ansible inventory file you can configure which machines to provision. See
 Playbook
 --------
 
-The next big step is your playbook. Here you can configure which roles to use on your hosts and what variables to use. Have a look at ``production.yml`` or ``vagrant.yml``.
+The next big step is your playbook. Here you can configure which roles to use on your hosts and what variables to use. Have a look at ``site.yml``.
 
 ---------
 Variables

@@ -24,7 +24,7 @@ Install all ansible requirements. You might have to specify a path for the roles
 Configuration
 +++++++++++++
 
-There are two sets of configurations: ``env_vars/vagrant.yml`` and ``env_vars/production.yml``.
+The main configuration files are in ``env_vars/``.
 Here you configure your setup, like the location of your Git_ project, the project name, and application name which will be used throughout the Ansible_ configuration.
 For more information see :ref:`configuration`.
 
@@ -52,7 +52,7 @@ After installing Ansible_, Vagrant_ and VirtualBox_ you simply execute::
           the encrypted shh and ssl keys. If you do not have these passwords, create your
           own keys. See the configuration section.
 
-You have to enter the ansible vault password, once provisioning starts!
+You have to create a ``vaultpwfile.txt`` with the vault password in it.
 Wait a few minutes for the magic to happen. Access the Django_ site by goingto this URL: https://192.168.33.15
 
 Access the Graylog_ web-interface via: https://192.168.33.15:9000

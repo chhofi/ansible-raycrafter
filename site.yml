@@ -50,6 +50,11 @@
     - {role: celery, when: "'crafternodes' in group_names"}
     - {role: graylog, when: "'crafternodes' in group_names"}
     - {role: gridftp, when: "'crafternodes' in groubp_names"}
+  tasks:
+    - name: Copy private ssh key of masterserver
+      copy: src="{{playbook_dir}}/files/ssh/id_rsa" dest="~/.ssh/id_rsa"
+            owner={{ ansible_ssh_user }} mode=0700
+
 
 - name: Setup raycrafter at the HLRS
   hosts: hlrs

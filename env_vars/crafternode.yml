@@ -1,5 +1,7 @@
 ---
 
 # web --------------------------------------------------------------------------
-rabbitmq_host: "{{ hostvars[groups['masterservers'][0]]['ansible_eth1']['ipv4']['address'] }}"
-db_host: "{{ hostvars[groups['masterservers'][0]]['ansible_eth1']['ipv4']['address'] }}"
+masterfacts: " {{ hostvars[groups['masterservers'][0]] }}"
+# For Vagrant its eth1 for production its eth0
+rabbitmq_host: "masterfacts.get('ansible_eth1', masterfacts['ansible_eth0'])['ipv4']['address'] }}"
+db_host: "{{ masterfacts.get('ansible_eth1', masterfacts['ansible_eth0'])['ipv4']['address'] }}"

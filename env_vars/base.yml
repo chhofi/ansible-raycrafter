@@ -24,6 +24,9 @@ superuser_email: zuber.david@gmx.de
 db_user: "{{ application_name }}"
 db_name: "{{ application_name }}"
 
+web_user: "{{ application_name }}"
+web_group: webapps
+
 # Nginx settings
 nginx_static_dir: "{{ virtualenv_path }}/static/"
 nginx_media_dir: "{{ virtualenv_path }}/media/"

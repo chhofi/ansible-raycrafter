@@ -1,6 +1,8 @@
 ---
 
 # gunicorn ---------------------------------------------------------------------
+gunicorn_user: "{{ web_user}}"
+gunicorn_group: "{{ web_group }}"
 gunicorn_num_workers: 3
 gunicorn_timeout_seconds: 300
 gunicorn_workdir: "{{ project_path }}"

@@ -41,3 +41,33 @@
                    role_attr_flags=NOSUPERUSER,NOCREATEDB
                    state=present
   tags: postgres
+
+- name: Get pg_hba.conf path
+  command: psql -t -P format=unaligned -c 'show hba_file'
+  register: hba_file
+  sudo_user: postgres
+  tags:
+    - postgres
+  changed_when: False
+
+- name: Get config file path
+  command: psql -t -P format=unaligned -c 'show config_file'
+  register: config_file
+  sudo_user: postgres
+  tags:
+    - postgres
+  changed_when: False
+
+- name: Allow crafternodes access in hba config
+  template: src=pg_hba.conf.j2
+            dest="{{ hba_file['stdout'] }}"
+  notify: restart postgresql
+  tags:
+    - postgres
+
+- name: Listen to crafternodes adresses
+  template: src=postgresql.conf.j2
+            dest="{{ config_file['stdout'] }}"
+  notify: restart postgresql
+  tags:
+    - postgres

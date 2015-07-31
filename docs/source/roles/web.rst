@@ -6,11 +6,8 @@ Dependencies:
 
 - supervisor
 
-Create user and usergroup for gunicorn.
+Create user and usergroup for django.
 Create a virtualenv for the django project.
-Install gunicorn.
-
-Create gunicorn start script and logging files.
 
 Configure the virutalenv postactivate, so django environment variables are set.
 
@@ -19,7 +16,7 @@ Set up the git repo of the django project.
 Install additional packages. In the current configuration ``./install_os_dependencies.sh install`` is executed in the project directory. You likely have to change this.
 
 Create supervisor config files.
-Make the gunicorn user owner of the virtual env path.
+Make the django user owner of the virtual env path.
 
 ---------
 Variables
@@ -36,8 +33,6 @@ application_name           "{{ project_name }}"
 virtualenv_root            "/webapps"                                                                                                               Location for where to create virtual env
 virtualenv_path            "{{ virtualenv_root }}/{{ application_name }}"                                                                           Path to the virtual env
 project_path               "{{ virtualenv_path }}/{{ project_name }}"                                                                               Path to the django project
-application_log_dir        "{{ virtualenv_path }}/logs"                                                                                             Path to the log dir
-application_log_file       "{{ application_log_dir }}/gunicorn_supervisor.log"                                                                      Path to the log file
 requirements_file          "{{ project_path }}/requirements.txt"                                                                                    Path to the pip requirements file of te project
 superuser_name             superuser                                                                                                                Django superuser to create
 superuser_email            superuser@example.com                                                                                                    Email of the django superuser

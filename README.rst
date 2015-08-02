@@ -6,12 +6,14 @@ ansible-raycrafter
     :target: http://ansible-raycrafter.readthedocs.org/en/latest/
     :alt: Documentation
 
-Ansible_ Playbook designed for running a Raycrafter_ Master Server.
+Ansible_ Playbook designed for running a Raycrafter_ Master Server and Crafter Nodes.
 It installs and configures applications that are needed for production deployments.
 
 It deploys a Django_ project and sets up Gunicorn_ and Nginx_ to serve your site.
 PostgreSQL_ is used as database backend for Django_.
-Celery_ (with RabbitMQ_ as message broker) for asynchronous task queue/job queue.
+RabbitMQ_ for sending task to Celery_ workers (a asynchronous task queue).
+The workers live on the crafter nodes. They can also transfer files via GridFTP_
+to the cluster.
 
 On top of that a logging server is deployed. In this case it is Graylog_, which depends
 on Elasticsearch_ and MongoDB_.
@@ -29,6 +31,7 @@ Overview:
 - Elasticsearch_
 - MongoDB_
 - Graylog_ Server/Web Interface
+- GridFTP_
 
 **Tested with OS:** Ubuntu 14.04 LTS x64
 
@@ -110,3 +113,4 @@ Useful Links
 .. _Djangotest: https://github.com/RayCrafter/djangotest
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _Cookiecutter-Django: https://github.com/RayCrafter/cookiecutter-django
+.. _GridFTP: http://toolkit.globus.org/toolkit/docs/latest-stable/gridftp/

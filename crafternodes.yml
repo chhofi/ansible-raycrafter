@@ -5,8 +5,8 @@
 # So we can set the right hostname for rabbitmq and the db
 - name: Create RayCrafter crafter node
   hosts: [crafternodes, masterservers]
-  sudo: yes
-  sudo_user: root
+  become: yes
+  become_user: root
   remote_user: vagrant
   vars_files:
     - env_vars/secret.yml
@@ -16,9 +16,14 @@
     - {role: supervisor, when: "'crafternodes' in group_names"}
     - {role: web, when: "'crafternodes' in group_names"}
     - {role: celery, when: "'crafternodes' in group_names"}
-    - {role: graylog, when: "'crafternodes' in group_names"}
     - {role: gridftp, when: "'crafternodes' in group_names"}
   tasks:
-    - name: Copy private ssh key of masterserver
+    - name: Create .ssh key dir
+      become_user: "{{ web_user}}"
+      file: path="~/.ssh" state=directory
+      when: "'crafternodes' in group_names"
+    - name: Copy private ssh key of crafternodes
+      become_user: "{{ web_user }}"
       copy: src="{{playbook_dir}}/files/ssh/id_rsa" dest="~/.ssh/id_rsa"
-            owner={{ ansible_ssh_user }} mode=0700
+            owner={{ web_user }} mode=0700
+      when: "'crafternodes' in group_names"

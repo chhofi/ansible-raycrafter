@@ -65,20 +65,23 @@ Additional vagrant commands
 
 SSH to the box::
 
-  vagrant ssh
+  $ vagrant ssh
 
 Re-provision the box to apply the changes you made to the Ansible configuration::
 
-  vagrant provision
+  $ vagrant provision
 
 Reboot the box::
 
-  vagrant reload
+  $ vagrant reload
 
 Shut the box down::
 
-  vagrant halt
+  $ vagrant halt
 
+Start fresh/clean up::
+
+  $ vagrant destroy
 
 .. _Graylog: https://www.graylog.org/
 .. _VirtualBox: https://virtualbox.org/

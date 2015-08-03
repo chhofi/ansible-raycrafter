@@ -1,0 +1,10 @@
+---
+
+celerycam_user: "{{ web_user }}"
+celerycam_group: "{{ web_group }}"
+
+celerycam_scripts_dir: "{{ virtualenv_path }}/scripts/celerycam"
+celerycam_template_file: "celerycam_start.j2"
+
+celerycam_log_dir: "{{ virtualenv_path }}/logs"
+celerycam_log_file: "{{ celerycam_log_dir }}/celerycam.log"

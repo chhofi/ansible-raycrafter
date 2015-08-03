@@ -1,0 +1,26 @@
+---
+
+# Add crafternodes to hosts but disable all roles
+# This is necessary for gathering facts
+# So we can set allow crafternodes to access the db
+- name: Create RayCrafter master server
+  hosts: [crafternodes, masterservers]
+  sudo: yes
+  sudo_user: root
+  remote_user: vagrant
+  vars_files:
+    - env_vars/secret.yml
+    - env_vars/base.yml
+    - env_vars/masterserver.yml
+  roles:
+    - {role: supervisor, when: "'masterservers' in group_names"}
+    - {role: jdauphant.ssl-certs, when: "'masterservers' in group_names"}
+    - {role: jdauphant.nginx, when: "'masterservers' in group_names"}
+    - {role: f500.elasticsearch, when: "'masterservers' in group_names"}
+    - {role: graylog2.graylog, when: "'masterservers' in group_names"}
+    - {role: db, when: "'masterservers' in group_names"}
+    - {role: rabbitmq, when: "'masterservers' in group_names"}
+    - {role: gunicorn, when: "'masterservers' in group_names"}
+    - {role: web, when: "'masterservers' in group_names"}
+    - {role: celerycam, when: "'masterservers' in group_names"}
+    - {role: graylog, when: "'masterservers' in group_names"}

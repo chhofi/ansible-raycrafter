@@ -1,7 +1,5 @@
 ---
 
-- include: decrypt_certs.yml
-
 - include: create_users_and_groups.yml
 
 - include: setup_virtualenv.yml
@@ -13,8 +11,5 @@
   tags: packages
 
 - include: setup_django_app.yml
-
-- include: setup_supervisor.yml
-  tags: supervisor
 
 - include: set_file_permissions.yml

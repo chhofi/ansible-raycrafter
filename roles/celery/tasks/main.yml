@@ -17,10 +17,3 @@
   tags:
     - celery
     - supervisor
-
-- name: Restart the celerycam app
-  set_fact: "{{ supervisor_restart_programms}} + [celerycam]"
-  when: supervisor_applications.stdout.find('celerycam') != -1
-  tags:
-    - celery
-    - supervisor

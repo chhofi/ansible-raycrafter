@@ -1,0 +1,42 @@
+---
+
+- name: Create the folder for the celery scripts
+  file: path={{ celerycam_scripts_dir }}
+        owner={{ celerycam_user }}
+        group={{ celerycam_group }}
+        mode=0774
+        state=directory
+  tags:
+    - celery
+
+- name: Create the celerycam script file
+  template: src={{ celerycam_template_file }}
+            dest={{ celerycam_scripts_dir }}/celerycam_start
+            owner={{ celerycam_user }}
+            group={{ celerycam_group }}
+            mode=0755
+  tags:
+    - celery
+
+- name: Create the Supervisor file for celerycam
+  template: src=supervisor_celerycam.conf.j2
+            dest=/etc/supervisor/conf.d/celerycam.conf
+  notify: Supervisor reread
+  notify: Supervisor update
+  tags:
+    - celery
+    - supervisor
+
+- name: Check running applications managed by supervisor
+  shell: supervisorctl status
+  register: supervisor_applications
+  tags:
+    - celerycam
+    - supervisor
+
+- name: Restart the celerycam app
+  set_fact: "{{ supervisor_restart_programms}} + [celerycam]"
+  when: supervisor_applications.stdout.find('celerycam') != -1
+  tags:
+    - celerycam
+    - supervisor

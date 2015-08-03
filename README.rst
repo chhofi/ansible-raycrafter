@@ -18,6 +18,8 @@ to the cluster.
 On top of that a logging server is deployed. In this case it is Graylog_, which depends
 on Elasticsearch_ and MongoDB_.
 
+The clients on the cluster can also be deployed.
+
 Overview:
 
 - Nginx_
@@ -60,7 +62,7 @@ Install all ansible requirements. You might have to specify a path for the roles
 Configuration
 +++++++++++++
 
-There are two sets of configurations: ``env_vars/vagrant.yml`` and ``env_vars/production.yml``.
+``env_vars`` contains the configuration files.
 Here you configure your setup, like the location of your Git_ project, the project name, and application name which will be used throughout the Ansible_ configuration.
 For more details see the documentation_.
 

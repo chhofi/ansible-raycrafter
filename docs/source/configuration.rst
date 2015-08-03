@@ -9,19 +9,19 @@ Inventory
 ---------
 
 In the ansible inventory file you can configure which machines to provision. See the `Ansible inventory documentation <http://docs.ansible.com/intro_inventory.html>`_.
+The :ref:`ansibleguide` explains how to create an inventory file.
 
 --------
 Playbook
 --------
 
-The next big step is your playbook. Here you can configure which roles to use on your hosts and what variables to use. Have a look at ``site.yml``.
+The next big step is your playbook. Here you can configure which roles to use on your hosts and what variables to use. Have a look at ``site.yml``. It includes several other playbooks and provisions a master server, crafternodes and the cluster.
 
 ---------
 Variables
 ---------
 
 The default playbooks use files in the ``env_vars`` directory to define most of the variables.
-There is one config for using Vagrant and one for production.
 
 Secret variables like passwords are stored in ``env_vars/secret.yml``. You can encrypt this file with `Ansible Vault <http://docs.ansible.com/playbooks_vault.html>`_. You can decrypt them for editing. You should always encrypt this file when commiting to a public repository::
 
@@ -56,9 +56,10 @@ For ssl certificates, create/override ``/files/ssl/application.pem``, ``/files/s
 In order to use GridFTP, you need to have a X.509 certificate and key. See the `HLRS GridFTP Wiki <https://wickie.hlrs.de/platforms/index.php/Data_Transfer_with_GridFTP>`_. By default, you have to put them in ``/files/ssl/usercert.pem`` and ``/files/ssl/userkey.pem``.
 See :ref:`raycrafterdoc:gridftp`.
 
-You should also create an ssh-key for the master server so he can access the cluster via ssh.
+You should also create an ssh-key for the crafternodes so they can access the cluster via ssh.
 Create a ssh keypair with::
 
   $ ssh-keygen -t rsa -b 4096 -C "raycrafter master server"
 
 Move them to ``/files/ssh/id_rsa`` and ``/files/ssh/id_rsa.pub``.
+The keys will be added to authorized hosts on the cluster by the role ``hlrsenv``.

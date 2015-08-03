@@ -1,4 +1,7 @@
 [masterservers]
+141.62.110.219  ansible_ssh_user=david
+
+[crafternodes]
 141.62.110.220  ansible_ssh_user=david
 
 [hlrs]

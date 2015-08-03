@@ -1,0 +1,12 @@
+---
+
+- name: Common base role
+  hosts: [masterservers, crafternodes]
+  sudo: yes
+  sudo_user: root
+  remote_user: vagrant
+  vars_files:
+    - env_vars/secret.yml
+    - env_vars/base.yml
+  roles:
+    - base

@@ -17,8 +17,8 @@ project = u'Ansible RayCrafter'
 copyright = u'2015, David Zuber'
 author = u'David Zuber'
 
-version = '2.3.0'
-release = '2.3.0'
+version = '3.0.0'
+release = '3.0.0'
 
 language = None
 
@@ -42,4 +42,6 @@ latex_documents = [
 ]
 
 # -- Intersphinx Config ---------------------------------------------------
-intersphinx_mapping = {'https://docs.python.org/': None}
+intersphinx_mapping = {'python': ('https://docs.python.org/', None),
+                       'raycrafterdoc': ('http://raycrafter.readthedocs.org/en/master/', None),
+}

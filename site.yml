@@ -1,4 +1,6 @@
 ---
 
-- include: production.yml
+- include: base.yml
+- include: masterserver.yml
+- include: crafternodes.yml
 - include: hlrs.yml

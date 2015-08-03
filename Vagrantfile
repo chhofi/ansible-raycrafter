@@ -4,24 +4,40 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
+groups = {
+  "masterservers" => ['master'],
+  "crafternodes" => ['crafter'],
+}
+
+inventory = {
+  "master" => {:ip => "192.168.33.15", :cpus => 2, :mem => 4096},
+  "crafter" => {:ip => "192.168.33.16", :cpus => 1, :mem => 1024},
+}
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "ubuntu/trusty64"
 
-  config.vm.network :private_network, ip: "192.168.33.15"
 
-  config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--name", "djangotest", "--memory", "4096", "--cpus", "2"]
-  end
+  inventory.each_with_index do |(hostname, info), index|
+    config.vm.define hostname do |cfg|
 
-  # Shared folder from the host machine to the guest machine. Uncomment the line
-  # below to enable it.
-  #config.vm.synced_folder "../../../my-cool-app", "/webapps/mycoolapp/my-cool-app"
+      cfg.vm.provider :virtualbox do |vb, override|
+        override.vm.box = "ubuntu/trusty64"
+        override.vm.network :private_network, ip: "#{info[:ip]}"
+        override.vm.hostname = hostname
+        vb.name = 'raycrafter-' + hostname
+        vb.customize ["modifyvm", :id, "--memory", info[:mem], "--cpus", info[:cpus]]
+      end
 
-  # Ansible provisioner.
-  config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "vagrant.yml"
-    ansible.host_key_checking = false
-    ansible.verbose = "v"
-    ansible.ask_vault_pass = true
+      # provision nodes with ansible
+      if index == inventory.size - 1
+        cfg.vm.provision :ansible do |ansible|
+          ansible.groups = groups
+          ansible.verbose = "v"
+          ansible.playbook = "site.yml"
+          ansible.limit = 'all'# "#{info[:ip]}" # Ansible hosts are identified by ip
+          ansible.vault_password_file = "vaultpwfile.txt"
+        end
+      end
+    end
   end
 end

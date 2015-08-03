@@ -22,4 +22,5 @@
     - {role: rabbitmq, when: "'masterservers' in group_names"}
     - {role: gunicorn, when: "'masterservers' in group_names"}
     - {role: web, when: "'masterservers' in group_names"}
+    - {role: celerycam, when: "'masterservers' in group_names"}
     - {role: graylog, when: "'masterservers' in group_names"}

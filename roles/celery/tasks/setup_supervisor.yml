@@ -9,15 +9,6 @@
     - celery
     - supervisor
 
-- name: Create the Supervisor file for celerycam
-  template: src=supervisor_celerycam.conf.j2
-            dest=/etc/supervisor/conf.d/celerycam.conf
-  notify: Supervisor reread
-  notify: Supervisor update
-  tags:
-    - celery
-    - supervisor
-
 - name: Create the {{ celery_application_name }} log directory
   file: path={{ celery_log_dir }}
         owner={{ celery_user }}

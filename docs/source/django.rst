@@ -41,6 +41,8 @@ The main things to note are the locations of the ``manage.py``, ``wsgi.py`` file
 
 For Celery_ it is expected that the app is ``{{ application_name }}``. You should import the celery app in ``myproject/myproject/__init__.py`` or change the ``celery_worker_app`` variable. See the `Celery documentation <Celerydocumentation_>`_.
 
+For the ``celerycam`` role, Djcelery_ is required to be in ``INSTALLED_APPS`` so one can track the status of the workers and tasks.
+
 Also, if your app needs additional system packages installed, you can add them in ``roles/web/tasks/install_additional_packages.yml``.
 
 --------
@@ -98,3 +100,4 @@ Here is a sample from the test project::
 .. _Cookiecutter-Django: https://github.com/RayCrafter/cookiecutter-django
 .. _Celerydocumentation: http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html#using-celery-with-django
 .. _Celery: http://www.celeryproject.org/
+.. _Djcelery: https://pypi.python.org/pypi/django-celery

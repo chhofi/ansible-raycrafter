@@ -17,8 +17,8 @@ project = u'Ansible RayCrafter'
 copyright = u'2015, David Zuber'
 author = u'David Zuber'
 
-version = '3.0.0'
-release = '3.0.0'
+version = '3.1.0'
+release = '3.1.0'
 
 language = None
 

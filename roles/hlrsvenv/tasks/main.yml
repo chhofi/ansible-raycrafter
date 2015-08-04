@@ -1,6 +1,6 @@
 ---
 
-- name: Add public ssh key of masterserver
+- name: Add public ssh key of crafternodes
   authorized_key: user={{ ansible_ssh_user }}
                   key="{{ lookup('file', playbook_dir + '/files/ssh/id_rsa.pub') }}"
 

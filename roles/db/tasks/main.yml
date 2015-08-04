@@ -30,7 +30,7 @@
   sudo_user: postgres
   postgresql_user: db={{ db_name }}
                    name={{ db_user }}
-                   password={{ db_password }}
+                   password="{{ db_password }}"
                    priv=ALL
                    state=present
   tags: postgres

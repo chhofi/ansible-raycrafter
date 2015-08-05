@@ -26,6 +26,7 @@ celerycam_template_file    "celerycam_start.j2"                                 
                                                                                    service.
 celerycam_log_dir          {{ virtualenv_path }}/logs                              Dir for the log files
 celerycam_log_file         "{{ celery_log_dir }}/celerycam.log"                    Full path to the celery cam log file
+celerycam_frequency        10.0                                                    Update frequency in seconds
 ========================== ======================================================= ==================================================
 
 ----

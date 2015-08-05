@@ -9,4 +9,4 @@ cd $DJANGODIR
 
 # Programs meant to be run under supervisor should not daemonize themselves
 # (do not use --daemon).
-exec ./manage.py celerycam
+exec ./manage.py celerycam --frequency={{ celerycam_frequency }}

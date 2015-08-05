@@ -8,3 +8,5 @@ celerycam_template_file: "celerycam_start.j2"
 
 celerycam_log_dir: "{{ virtualenv_path }}/logs"
 celerycam_log_file: "{{ celerycam_log_dir }}/celerycam.log"
+
+celerycam_frequency: 10.0

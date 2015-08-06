@@ -27,3 +27,9 @@
       copy: src="{{playbook_dir}}/files/ssh/id_rsa" dest="~/.ssh/id_rsa"
             owner={{ web_user }} mode=0700
       when: "'crafternodes' in group_names"
+    - name: Add known host
+      become_user: "{{ web_user}}"
+      known_hosts: host="{{ cluster_host }}"
+                   key="{{ lookup('file', playbook_dir+'/files/ssh/cluster_key.pub')}}"
+                   state=present
+      when: "'crafternodes' in group_names"

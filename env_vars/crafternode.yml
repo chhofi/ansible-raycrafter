@@ -8,3 +8,5 @@ db_host: "{{address}}"
 gridftp_user: "{{ web_user }}"
 # celery -----------------------------------------------------------------------
 celery_num_workers: 4
+
+cluster_host: hornet.hww.de

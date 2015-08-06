@@ -63,3 +63,14 @@ Create a ssh keypair with::
 
 Move them to ``/files/ssh/id_rsa`` and ``/files/ssh/id_rsa.pub``.
 The keys will be added to authorized hosts on the cluster by the role ``hlrsenv``.
+
+Crafternodes have ssh access onto the cluster. To add the cluster to the known hosts,
+copy the known_host for the cluster into ``/files/ssh/cluster_known_host``. The host name
+might be hashed. You can find out what to put into the file by executing::
+
+  $ ssh-keygen -H -F <cluster host name>
+  # Host hornet.hww.de found: line 8 type ECDSA
+  |1|dE1Zl+7F+YCTpQzwevpMLfdC72Q=|St2FgUqhqErgdriEygDQlrpLfcs= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLFx5zZA0Mg36FIpdT35OoJgkdZxu4blDVLfrMXd63Rt06VZIznJweWD9/rrgIaW1Dn5TrsUSfUkOPkexYBDKdQ=
+
+Copy the last line and paste it into the file.
+In ``env_vars/crafternodes.yml`` update the cluster hostname to the one you used.

@@ -101,5 +101,5 @@ host    all             all             ::1/128                 md5
 # {{ ansible_managed }}
 # Crafternodes
 {% for name in groups['crafternodes']%}
-host    all             all             {{ hostvars[name].get('ansible_eth1', hostvars[name]['ansible_eth0'])['ipv4']['address'] }}/32            md5
+host    all             all             {%if hostvars[name].get('ansible_eth1') and hostvars[name]['ansible_eth1']['active']%}{{ hostvars[name]['ansible_eth1']['ipv4']['address']}}{%else%}{{ hostvars[name]['ansible_eth1']['ipv4']['address']}}{%endif%}/32            md5
 {% endfor %}

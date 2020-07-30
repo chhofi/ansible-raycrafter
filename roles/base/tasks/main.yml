@@ -15,11 +15,15 @@
   tags: packages
 
 - name: Install base packages
-  apt: name:['build-essential', 'ntp', 'htop', 'git', 'libpq-dev', 'python-dev', 'python-pip', 'python-pycurl', '{{ language_pack}}'] force=yes state=latest
+  apt: 
+    pkg: ['build-essential', 'ntp', 'htop', 'git', 'libpq-dev', 'python-dev', 'python-pip', 'python-pycurl', '{{ language_pack}}']
+    force: yes
+    state: latest
   tags: packages
 
 - name: Install virtualenv
-  pip: name=virtualenv
+  pip: 
+    name: virtualenv
   tags: packages
 
 - name: Make sure ntp is running

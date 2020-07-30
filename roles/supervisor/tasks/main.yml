@@ -1,9 +1,11 @@
 ---
 
 - name: Install supervisor
-  apt: name={{ item }} update_cache={{ update_apt_cache }} force=yes state=installed
-  with_items:
-    - supervisor
+  apt: 
+    pkg: ['supervisor'] 
+    update_cache: "{{ update_apt_cache }}" 
+    force: yes 
+    state: latest
   tags:
     - packages
     - supervisor

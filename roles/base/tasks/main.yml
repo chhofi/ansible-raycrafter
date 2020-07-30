@@ -9,26 +9,13 @@
   tags: packages
 
 - name: Ensure bash, OpenSSl, and libssl are the latest versions
-  apt: name={{ item }} state=latest
-  with_items:
-    - bash
-    - openssl
-    - libssl-dev
-    - libssl-doc
+  apt: 
+    pkg: ['bash', 'openssl', 'libssl-dev', 'libssl-doc'] 
+    state: latest
   tags: packages
 
 - name: Install base packages
-  apt: name={{ item }} force=yes state=installed
-  with_items:
-    - build-essential
-    - ntp
-    - htop
-    - git
-    - libpq-dev
-    - python-dev
-    - python-pip
-    - python-pycurl
-    - '{{ language_pack}}'
+  apt: name:['build-essential', 'ntp', 'htop', 'git', 'libpq-dev', 'python-dev', 'python-pip', 'python-pycurl', '{{ language_pack}}'] force=yes state=latest
   tags: packages
 
 - name: Install virtualenv

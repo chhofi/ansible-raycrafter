@@ -42,7 +42,7 @@ ssl_certs_privkey_path: "{{ssl_certs_patch}}/{{ssl_certs_common_name}}.key"
 ssl_certs_local_cert_path: "{{playbook_dir}}/files/ssl/application.pem"
 ssl_certs_country: "DE"
 ssl_certs_locality: "Stuttgart"
-ssl_certs_organization: "Hdm Stuttgart"
+ssl_certs_organization: "HdM Stuttgart"
 ssl_certs_state: "BW"
 ssl_certs_generate_self_signed: true
 ssl_certs_key_size: "2048"

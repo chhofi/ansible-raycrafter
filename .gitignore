@@ -20,3 +20,7 @@ roles/graylog2.graylog/
 roles/jdauphant.nginx/
 roles/jdauphant.ssl-certs/
 roles/lesmyrmidons.mongodb/
+files/ssh/id_rsa
+*.key
+vaultpwfile.txt
+roles/key.pem

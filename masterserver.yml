@@ -5,8 +5,7 @@
 # So we can set allow crafternodes to access the db
 - name: Create RayCrafter master server
   hosts: [crafternodes, masterservers]
-  sudo: yes
-  sudo_user: root
+  become: yes
   remote_user: vagrant
   vars_files:
     - env_vars/secret.yml

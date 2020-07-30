@@ -2,8 +2,7 @@
 
 - name: Common base role
   hosts: [masterservers, crafternodes]
-  sudo: yes
-  sudo_user: root
+  become: yes
   remote_user: vagrant
   vars_files:
     - env_vars/secret.yml

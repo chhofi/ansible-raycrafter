@@ -20,3 +20,5 @@ roles/graylog2.graylog/
 roles/jdauphant.nginx/
 roles/jdauphant.ssl-certs/
 roles/lesmyrmidons.mongodb/
+role/elastic.elasticsearch/
+role/lean_delivery.java/

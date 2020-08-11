@@ -36,6 +36,7 @@ rabbitmq_admin_user: admin
 rabbitmq_host: localhost
 rabbitmq_application_vhost: "{{ application_name }}"
 rabbitmq_application_user: "{{ application_name }}"
+rabbitmq_application_password: "test"
 
 # Django settings
 django_settings_file: "config.settings.production"

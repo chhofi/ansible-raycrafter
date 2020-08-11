@@ -16,15 +16,22 @@
 
 - name: Install base packages
   apt: 
-    pkg: ['build-essential', 'ntp', 'htop', 'git', 'libpq-dev', 'python-dev', 'python-pip', 'python-pycurl', '{{ language_pack}}']
+    pkg: ['build-essential','python3','python3-pip', 'python3.4-venv', 'ntp', 'htop', 'git', 'libpq-dev', 'python-pycurl', '{{ language_pack}}']
     force: yes
     state: latest
   tags: packages
 
+
+- name: Fix missing pathlib2 for virtualenv
+  pip:
+    name: pathlib2
+    executable: pip3
+
 - name: Install virtualenv
-  pip: 
+  pip:
     name: virtualenv
-  tags: packages
+    executable: pip3
+
 
 - name: Make sure ntp is running
   service: name=ntp state=started enabled=yes

@@ -1,7 +1,7 @@
 ---
 
-- name: Create the virtualenv
-  command: virtualenv {{ virtualenv_path }} --no-site-packages
+- name: Initiate virtualenv
+  command: virtualenv {{ virtualenv_path }}
            creates={{ virtualenv_path }}/bin/activate
 
 - name: Create the virtualenv postactivate script to set environment variables

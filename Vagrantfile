@@ -21,7 +21,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define hostname do |cfg|
 
       cfg.vm.provider :virtualbox do |vb, override|
-        override.vm.box = "ubuntu/trusty64"
+        override.vm.box = "ubuntu/bionic64"
         override.vm.network :private_network, ip: "#{info[:ip]}"
         override.vm.hostname = hostname
         vb.name = 'raycrafter-' + hostname

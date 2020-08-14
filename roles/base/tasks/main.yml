@@ -16,7 +16,7 @@
 
 - name: Install base packages
   apt: 
-    pkg: ['build-essential','python3','python3-pip', 'python3.4-venv', 'ntp', 'htop', 'git', 'libpq-dev', 'python-pycurl', '{{ language_pack}}']
+    pkg: ['build-essential','python3-pip', 'python3.6-venv', 'ntp', 'htop', 'git', 'libpq-dev', 'python-pycurl', '{{ language_pack}}']
     force: yes
     state: latest
   tags: packages

@@ -1,6 +1,6 @@
 ---
 
-- include: base.yml
-- include: masterserver.yml
-- include: crafternodes.yml
-- include: hlrs.yml
+- import_playbook: base.yml
+- import_playbook: masterserver.yml
+- import_playbook: crafternodes.yml
+- import_playbook: hlrs.yml

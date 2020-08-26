@@ -49,5 +49,5 @@ django_environment:
   EMAIL_PORT: "{{ django_email_port}}"
   EMAIL_HOST_USER: "{{ django_email_host_user|default(omit) }}"
   EMAIL_HOST_PASSWORD: "{{ django_email_host_password|default(omit) }}"
-  DJANGO_DEFAULT_FROM_EMAIL: "{{ application_name}} <noreply@{{ ansible_eth0.ipv4.address }}>"
+  DJANGO_DEFAULT_FROM_EMAIL: "{{ application_name}} <noreply@{{ ansible_enp0s3.ipv4.address }}>"
   BROKER_URL: "{{ django_broker_url|default(omit) }}"

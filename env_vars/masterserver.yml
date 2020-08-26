@@ -110,7 +110,7 @@ nginx_sites:
           root {{ virtualenv_path }}/;
       }
   graylog:
-    - listen {% if ansible_eth1 is defined and ansible_eth1.active %}{{ansible_eth1['ipv4']['address']}}{%else%}{{ansible_eth0['ipv4']['address']}}{%endif%}:{{graylog_web_port}}
+    - listen {% if ansible_enp1s3 is defined and ansible_enp1s3.active %}{{ansible_enp0s3['ipv4']['address']}}{%else%}{{ansible_enp0s3['ipv4']['address']}}{%endif%}:{{graylog_web_port}}
     - server_name {{ nginx_server_name }}
     - ssl on
     - error_page 497 https://$host:$server_port$request_uri

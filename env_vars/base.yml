@@ -8,7 +8,7 @@ project_name: djangotest
 application_name: "{{ project_name}}"
 
 # web --------------------------------------------------------------------------
-git_repo: https://github.com/RayCrafter/djangotest.git
+git_repo: https://github.com/chhofi/djangotest.git
 git_branch: develop
 setup_git_repo: true
 
@@ -59,7 +59,7 @@ django_environment:
   EMAIL_PORT: "{{ django_email_port}}"
   EMAIL_HOST_USER: "{{ django_email_host_user|default(omit) }}"
   EMAIL_HOST_PASSWORD: "{{ django_email_host_password|default(omit) }}"
-  DJANGO_DEFAULT_FROM_EMAIL: "{{ application_name}} <noreply@{%if ansible_eth1 is defined and ansible_eth1.active%}{{ansible_eth1['ipv4']['address']}}{%else%}{{ansible_eth0['ipv4']['address']}}{%endif%}>"
+  DJANGO_DEFAULT_FROM_EMAIL: "{{ application_name}} <noreply@{%if ansible_enp1s3 is defined and ansible_enp1s3.active%}{{ansible_enp1s3['ipv4']['address']}}{%else%}{{ansible_enp0s3['ipv4']['address']}}{%endif%}>"
   BROKER_URL: "{{ django_broker_url|default(omit) }}"
 
 

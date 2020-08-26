@@ -2,7 +2,7 @@
 
 # web --------------------------------------------------------------------------
 masterfacts: "{{ hostvars[groups['masterservers'][0]] }}"
-address: "{%if masterfacts.get('ansible_eth1') and masterfacts['ansible_eth1']['active']%}{{masterfacts['ansible_eth1']['ipv4']['address']}}{%else%}{{masterfacts['ansible_eth0']['ipv4']['address']}}{%endif%}"
+address: "{%if masterfacts.get('ansible_enp1s3') and masterfacts['ansible_enp1s3']['active']%}{{masterfacts['ansible_enp1s3']['ipv4']['address']}}{%else%}{{masterfacts['ansible_enp0s3']['ipv4']['address']}}{%endif%}"
 rabbitmq_host: "{{address}}"
 db_host: "{{address}}"
 gridftp_user: "{{ web_user }}"

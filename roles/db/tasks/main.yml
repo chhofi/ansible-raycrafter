@@ -1,11 +1,10 @@
 ---
 
 - name: Install PostgreSQL
-  apt: name={{ item }} update_cache={{ update_apt_cache }} state=installed
-  with_items:
-    - postgresql
-    - postgresql-contrib
-    - python-psycopg2
+  apt: 
+    name: = ['postgresql', 'postgresql-contrib', 'python-psycopg2']
+    update_cache: "{{ update_apt_cache }}"
+    state: installed
   tags: 
     - packages
     - postgres

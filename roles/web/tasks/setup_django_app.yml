@@ -16,13 +16,14 @@
   when: django_run_syncdb is defined and django_run_syncdb
   tags: django.syncdb
 
+
 - name: Run Django database migrations
   django_manage:
     command: migrate
     app_path: "{{ project_path }}"
     virtualenv: "{{ virtualenv_path }}"
     settings: "{{ django_settings_file }}"
-  environment: django_environment
+  environment: "{{ django_environment }}"
   when: django_run_db_migrations is defined and django_run_db_migrations
   tags: django.migrate
 
@@ -32,7 +33,7 @@
     app_path: "{{ project_path }}"
     virtualenv: "{{ virtualenv_path }}"
     settings: "{{ django_settings_file }}"
-  environment: django_environment
+  environment: "{{ django_environment }}"
   when: django_run_collectstatic is defined and django_run_collectstatic
   tags: django.collectstatic
 

@@ -8,8 +8,8 @@ project_name: djangotest
 application_name: "{{ project_name}}"
 
 # web --------------------------------------------------------------------------
-git_repo: https://github.com/chhofi/djangotest.git
-git_branch: develop
+git_repo: https://github.com/chhofi/djangotest
+git_branch: master
 setup_git_repo: true
 
 virtualenv_root: "/webapps"
